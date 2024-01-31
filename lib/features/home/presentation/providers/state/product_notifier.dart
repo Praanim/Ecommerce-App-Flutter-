@@ -15,4 +15,5 @@ class ProductNotifier extends StateNotifier<ProductState>{
       state = ProductSuccess(products: products);
     });
   }
+  // state.products.sort((a, b) => b.createdOn.compareTo(a.createdOn));
 }

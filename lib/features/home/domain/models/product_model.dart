@@ -5,6 +5,7 @@ class Product {
   final String description;
   final int price;
   final List<String> images;
+  final Sales? sales;
   final DateTime createdOn;
   final DateTime updatedOn;
 
@@ -15,6 +16,7 @@ class Product {
       required this.description,
       required this.price,
       required this.images,
+      required this.sales,
       required this.createdOn,
       required this.updatedOn});
 
@@ -26,8 +28,33 @@ class Product {
       description: json['description'] as String,
       price: json['price'] as int,
       images: (json['images'] as List<dynamic>).cast<String>(),
+      sales: Sales.fromJson(json['sales']),
       createdOn: DateTime.parse(json['createdOn'] as String),
       updatedOn: DateTime.parse(json['updatedOn'] as String),
     );
   }
 }
+
+class Sales {
+  final int quantitySold;
+  final int totalRevenue;
+
+  Sales({required this.quantitySold, required this.totalRevenue});
+
+  // Convert a JSON object to a Sales object
+  factory Sales.fromJson(Map<String, dynamic> json) {
+    return Sales(
+      quantitySold: json['quantitySold'] as int,
+      totalRevenue: json['totalRevenue'] as int,
+    );
+  }
+
+  // Convert the Sales object to a JSON object
+  Map<String, dynamic> toJson() {
+    return {
+      'quantitySold': quantitySold,
+      'totalRevenue': totalRevenue,
+    };
+  }
+}
+
