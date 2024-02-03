@@ -11,6 +11,7 @@ class ProductCard extends StatelessWidget {
     return Card(
       clipBehavior: Clip.antiAlias,
       child: SizedBox(
+        // height: MediaQuery.of(context).size.height/ 3,
         width: MediaQuery.of(context).size.width / 2.2,
         child: Column(
           children: [

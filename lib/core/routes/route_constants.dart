@@ -8,6 +8,9 @@ static const signUpScreen = 'SignUp';
 ///Bottom Navigation routes (Home)
 static const homeScreen = 'Home';
 
+///Child route of home route
+static const productScreen = 'Product';
+
 ///Bottom Navigation routes (Favourite)
 static const favouriteScreen = 'Favourite';
 

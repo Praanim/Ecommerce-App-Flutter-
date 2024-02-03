@@ -1,9 +1,11 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
+import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/product_providers.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/state/product_state.dart';
 import 'package:eccomerce_frontend/features/home/presentation/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -28,7 +30,10 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: AppConstants.pad8),
             child: Column(
               children: [
-                productFilterRow(filterCategory: 'Recently Added'),
+                productFilterRow(filterCategory: 'Recently Added',
+                onTap:  (){
+                  context.goNamed(RouteConstants.productScreen);
+            }),
                 SizedBox(
                   height: 250,
                   child: Consumer(builder: (context, ref, child) {
@@ -40,6 +45,7 @@ class HomeScreen extends StatelessWidget {
                         ,itemCount: state.products.length,
                       itemBuilder:(context, index) {
                        final product = state.products[index]; 
+                       
                        return ProductCard(product: product);
                       } ,);
                     }else if(state is ProductFailure){
@@ -60,7 +66,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
   Widget productFilterRow({
-    required String filterCategory
+    required String filterCategory,
+    void Function()? onTap,
   }){
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -71,9 +78,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           Text(filterCategory),
           InkWell(
-            onTap: (){
-              //TODO:implement view all
-            }
+            onTap:onTap
             ,child: Text('View All'))
         ],
       ),

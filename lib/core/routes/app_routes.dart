@@ -5,6 +5,7 @@ import 'package:eccomerce_frontend/features/home/presentation/bottom_navigator_w
 import 'package:eccomerce_frontend/features/home/presentation/screens/cart_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/favourite_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/home_screen.dart';
+import 'package:eccomerce_frontend/features/home/presentation/screens/product_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -43,6 +44,11 @@ final GoRouter router = GoRouter(
               path: '/home',
               name: RouteConstants.homeScreen,
               builder: (context, state) => const HomeScreen(),
+                routes: [
+                  GoRoute(path: 'product',
+                  name: RouteConstants.productScreen,
+                  builder: (context, state) => const ProductScreen(),)
+                ]
             ),
             GoRoute(
               path: '/favourite',
