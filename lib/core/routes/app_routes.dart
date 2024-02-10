@@ -14,7 +14,6 @@ import 'package:go_router/go_router.dart';
 final GlobalKey<NavigatorState> rootNavigator = GlobalKey();
 final GlobalKey<NavigatorState> shellNavigator = GlobalKey();
 
-
 final GoRouter router = GoRouter(
     initialLocation: '/login',
     navigatorKey: rootNavigator,
@@ -28,12 +27,11 @@ final GoRouter router = GoRouter(
         redirect: (context, state) {
           //TODO: make this code more clean
           final currentUser = FirebaseAuth.instance.currentUser;
-          if(currentUser != null){
+          if (currentUser != null) {
             return '/home';
           }
           return '/login';
         },
-        
       ),
       GoRoute(
         path: '/signUp',
@@ -51,15 +49,16 @@ final GoRouter router = GoRouter(
               ),
           routes: [
             GoRoute(
-              path: '/home',
-              name: RouteConstants.homeScreen,
-              builder: (context, state) => const HomeScreen(),
+                path: '/home',
+                name: RouteConstants.homeScreen,
+                builder: (context, state) => const HomeScreen(),
                 routes: [
-                  GoRoute(path: 'product',
-                  name: RouteConstants.productScreen,
-                  builder: (context, state) => const ProductScreen(),)
-                ]
-            ),
+                  GoRoute(
+                    path: 'product',
+                    name: RouteConstants.productScreen,
+                    builder: (context, state) => const ProductScreen(),
+                  )
+                ]),
             GoRoute(
               path: '/favourite',
               name: RouteConstants.favouriteScreen,

@@ -13,8 +13,7 @@ mixin ExceptionHandlerMixin on NetworkService {
       {String endPoint = ''}) async {
     try {
       final res = await handler();
-      return Right(
-        AppResponse(
+      return Right(AppResponse(
           statusCode: res.statusCode ?? 200,
           data: res.data,
           statusMessage: res.statusMessage));
@@ -38,7 +37,7 @@ mixin ExceptionHandlerMixin on NetworkService {
           statusCode = 1;
           identifier = 'DioException ${e.message} at $endPoint';
           break;
-        
+
         default:
           message = 'Unknown error occurred';
           statusCode = 2;

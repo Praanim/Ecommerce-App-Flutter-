@@ -47,7 +47,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomTextFormField(
-                  textEditingController: _nameController, labelText: 'Full Name'),
+                  textEditingController: _nameController,
+                  labelText: 'Full Name'),
               VerticalGap.l,
               CustomTextFormField(
                   textEditingController: _emailController, labelText: 'Email'),
@@ -60,22 +61,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textEditingController: _confirmPasswordController,
                   labelText: 'Confirm Password'),
               VerticalGap.xxxl,
-              Consumer(
-                builder: (context,ref,_) {
-                  return AuthButton(
-                    text: 'Sign Up',
-                    onPressed: ()async{
-                       if (_doubleCheckPassword(context)) {
-                        //proceed with signUp
-                        ref.read(authStateNotifierProvider.notifier).signUpUser(
-                            email: _emailController.text,
-                            password: _passwordController.text);
-                      }
-                    },
-                  );
-                  
-                }
-              ),
+              Consumer(builder: (context, ref, _) {
+                return AuthButton(
+                  text: 'Sign Up',
+                  onPressed: () async {
+                    if (_doubleCheckPassword(context)) {
+                      //proceed with signUp
+                      ref.read(authStateNotifierProvider.notifier).signUpUser(
+                          email: _emailController.text,
+                          password: _passwordController.text);
+                    }
+                  },
+                );
+              }),
               VerticalGap.l,
               TextButton(
                 onPressed: () {

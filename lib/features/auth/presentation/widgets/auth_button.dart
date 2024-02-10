@@ -12,9 +12,11 @@ class AuthButton extends ConsumerWidget {
 
   ///on pressed function
   final void Function()? onPressed;
-  const AuthButton({super.key,
-  required this.text,
-  required this.onPressed});
+  const AuthButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

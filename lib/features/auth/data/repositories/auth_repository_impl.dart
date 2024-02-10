@@ -7,7 +7,7 @@ import 'package:eccomerce_frontend/features/auth/domain/repositories/auth_reposi
 class AuthRepositoryImpl extends AuthRepository {
   final AuthDataSource authDataSource;
 
-  AuthRepositoryImpl({required this.authDataSource}); 
+  AuthRepositoryImpl({required this.authDataSource});
 
   @override
   Future<Either<AppException, void>> signInUser({required UserModel user}) {

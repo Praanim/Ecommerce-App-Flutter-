@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:eccomerce_frontend/core/constants/api_constants.dart';
@@ -36,10 +35,10 @@ class DioNetworkService extends NetworkService with ExceptionHandlerMixin {
 
   @override
   Future<Either<AppException, AppResponse>> get(String endPoint,
-      {Map<String, dynamic>? queryParameters})async {
-    final eitherRes = await handleException(() => dio.get(endPoint,
-      queryParameters: queryParameters),
-      endPoint: endPoint);
+      {Map<String, dynamic>? queryParameters}) async {
+    final eitherRes = await handleException(
+        () => dio.get(endPoint, queryParameters: queryParameters),
+        endPoint: endPoint);
 
     return eitherRes;
   }
