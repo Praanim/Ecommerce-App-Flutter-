@@ -7,6 +7,7 @@ import 'package:eccomerce_frontend/features/home/presentation/screens/favourite_
 import 'package:eccomerce_frontend/features/home/presentation/screens/home_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/product_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/profile_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,7 +16,7 @@ final GlobalKey<NavigatorState> shellNavigator = GlobalKey();
 
 
 final GoRouter router = GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/login',
     navigatorKey: rootNavigator,
     routes: <RouteBase>[
       GoRoute(
@@ -24,6 +25,15 @@ final GoRouter router = GoRouter(
         builder: (context, state) {
           return const LoginScreen();
         },
+        redirect: (context, state) {
+          //TODO: make this code more clean
+          final currentUser = FirebaseAuth.instance.currentUser;
+          if(currentUser != null){
+            return '/home';
+          }
+          return '/login';
+        },
+        
       ),
       GoRoute(
         path: '/signUp',

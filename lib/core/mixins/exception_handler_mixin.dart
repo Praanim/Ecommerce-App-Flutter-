@@ -38,7 +38,7 @@ mixin ExceptionHandlerMixin on NetworkService {
           statusCode = 1;
           identifier = 'DioException ${e.message} at $endPoint';
           break;
-
+        
         default:
           message = 'Unknown error occurred';
           statusCode = 2;

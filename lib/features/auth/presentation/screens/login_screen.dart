@@ -1,7 +1,7 @@
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/core/utils/gap.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/state/auth_state.dart';
+import 'package:eccomerce_frontend/features/auth/presentation/widgets/auth_button.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,32 +50,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 textEditingController: _passwordController,
                 labelText: "Password"),
             VerticalGap.xxl,
-            Consumer(builder: (context, ref, _) {
-              final state = ref.watch(authStateNotifierProvider);
-
-              ref.listen(authStateNotifierProvider, (previous, next) { 
-                if(next is AuthSuccess){
-                  context.go('/'); //navigate to homeScreen
-                }
-              });
-
-              if (state is AuthLoading) {
-                return _button(
-                  child: const CircularProgressIndicator(),
-                );
-              }
-              return ElevatedButton(
-                onPressed: () async {
-                  final authStateNotifier =
-                      ref.read(authStateNotifierProvider.notifier);
-                  await authStateNotifier.loginUser(
-                    email: _emailController.text,
-                    password: _passwordController.text,
-                  );
+           Consumer(
+             builder: (context,ref,_) {
+               return AuthButton(
+                text: 'Login',
+                onPressed: ()async{
+                    final authStateNotifier =
+                          ref.read(authStateNotifierProvider.notifier);
+                      await authStateNotifier.loginUser(
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                      );
                 },
-                child: const Text('Sign In'),
-              );
-            }),
+               );
+             }
+           ),
             VerticalGap.l,
             TextButton(
               onPressed: () {

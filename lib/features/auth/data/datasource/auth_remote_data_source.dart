@@ -1,41 +1,56 @@
 import 'package:dartz/dartz.dart';
 import 'package:eccomerce_frontend/core/exceptions/http_exceptions.dart';
-import 'package:eccomerce_frontend/core/services/remote/network_services.dart';
-import 'package:eccomerce_frontend/features/auth/domain/models/user.dart';
+import 'package:eccomerce_frontend/core/shared/shared.dart';
+import 'package:eccomerce_frontend/features/auth/data/models/user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-abstract class AuthDataSource{
-  Future<Either<AppException,User>> loginUser({
-    required User user
-  });
+abstract class AuthDataSource {
+  ///Sign in user
+  Future<Either<AppException, void>> sigIn({required UserModel user});
+
+  ///Sign up user
+  Future<Either<AppException, void>> signUp({required UserModel user});
+
+  ///user auth state
+  Stream<User?> authStateChanges();
 }
 
-class AuthRemoteDataSource extends AuthDataSource{
-  final NetworkService networkService;
+class AuthRemoteDataSource extends AuthDataSource {
+  final FirebaseAuth firebaseAuth;
 
-  AuthRemoteDataSource({required this.networkService});
+  AuthRemoteDataSource({required this.firebaseAuth});
 
   @override
-  Future<Either<AppException, User>> loginUser({required User user}) async{
-    try{
-      final eitherResponse = await networkService.post('/user/signIn',
-      data: user.toJson(),
-      );
-     return eitherResponse.fold((exception) =>Left(exception), (appResponse) {
-          final user = User.fromJson(appResponse.data);
-
-          return Right(user);
-      },);
-
-    }catch(e){
-      return Left(
-        AppException(
-          message: 'Unknown error occurred',
-          statusCode: 4,
-          identifier: '${e.toString()}\nLoginUserRemoteDataSource.loginUser',
-        ),
-      );
+  Future<Either<AppException, void>> sigIn({required UserModel user}) async {
+    try {
+      await firebaseAuth.signInWithEmailAndPassword(
+          email: user.email!, password: user.password!);
+      return const Right(null);
+    } on FirebaseAuthException catch (e) {
+      return Left(SharedClass.firebaseErrorInstance(e: e));
+    } catch (e) {
+      return Left(SharedClass.unknownErrorInstance(
+          identifier: '${e.toString()}\nLoginUserRemoteDataSource.loginUser'));
     }
-
   }
 
+  @override
+  Stream<User?> authStateChanges() {
+    // TODO: implement authStateChanges
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<AppException, void>> signUp({required UserModel user}) async {
+    try {
+      await firebaseAuth.createUserWithEmailAndPassword(
+          email: user.email!, password: user.password!);
+      return const Right(null);
+    } on FirebaseAuthException catch (e) {
+      return Left(SharedClass.firebaseErrorInstance(e: e));
+    } catch (e) {
+      return Left(SharedClass.unknownErrorInstance(
+          identifier: '${e.toString()}\nLoginUserRemoteDataSource.loginUser'));
+    }
+  }
 }
