@@ -5,7 +5,7 @@ import 'package:eccomerce_frontend/features/home/presentation/bottom_navigator_w
 import 'package:eccomerce_frontend/features/home/presentation/screens/cart_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/favourite_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/home_screen.dart';
-import 'package:eccomerce_frontend/features/home/presentation/screens/product_screen.dart';
+import 'package:eccomerce_frontend/features/product/presentation/screens/product_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
