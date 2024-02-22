@@ -7,10 +7,12 @@ final productNotifierProvider =
     StateNotifierProvider<ProductNotifier, ProductState>(
   (ref) => ProductNotifier(
     productReposiotry: ref.watch(productRepositoryProvider),
-  )..getAllProducts(),
+  )
+    ..getAllCategories()
+    ..getAllProducts(),
 );
 
-final categoryProvider = FutureProvider((ref) {
-  final productRepository = ref.watch(productRepositoryProvider);
-  return productRepository.getAllCategores();
-});
+// final categoryProvider = FutureProvider((ref) {
+//   final productRepository = ref.watch(productRepositoryProvider);
+//   return productRepository.getAllCategores();
+// });

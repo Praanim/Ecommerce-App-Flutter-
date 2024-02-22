@@ -17,46 +17,75 @@ class ProductScreen extends ConsumerWidget {
           title: const Text('All Products'),
         ),
         //TODO:Add filters like in Deardoc Faqs
-        body: ref.watch(categoryProvider).when(
-              data: (data) {
-                return data.fold((appException) {
-                  return CustomErrorWidget(errorMssg: appException.message);
-                }, (catergories) {
-                  return Builder(
-                    builder: (context) {
-                      final state = ref.watch(productNotifierProvider);
+        body: Builder(
+          builder: (context) {
+            final state = ref.watch(productNotifierProvider);
+            final categories =
+                ref.read(productNotifierProvider.notifier).allCategories;
 
-                      if (state is ProductSuccess) {
-                        return GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2, // Number of items per row
-                                  crossAxisSpacing: AppConstants
-                                      .pad8, // Spacing between columns
-                                  mainAxisSpacing:
-                                      AppConstants.pad8, // Spacing between rows
-                                  mainAxisExtent: 300),
-                          //TODO:make the 300 value responsive
-                          itemCount: state.products.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            final product = state.products[index];
-                            return ProductCard(
-                              product: product,
-                            );
+            if (state is ProductSuccess) {
+              return Column(
+                children: [
+                  SizedBox(
+                    height: 100,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        final categoryName = categories[index].title;
+                        return GestureDetector(
+                          onTap: () {
+                            //filter the product
+                            ref
+                                .read(productNotifierProvider.notifier)
+                                .filterProducts(
+                                    categoryId: categories[index].id);
                           },
+                          child: Container(
+                            margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                            decoration: BoxDecoration(
+                              color: Colors.amber.shade50,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                  color: Colors.amber.shade300, width: 1),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 4.0),
+                              child: Text(categoryName),
+                            ),
+                          ),
                         );
-                      } else {
-                        return Text('Something went wrong');
-                      }
-                    },
-                  );
-                });
-              },
-              loading: () => const CircularProgressIndicator(),
-              error: (error, stackTrace) {
-                return const Text(
-                    'Something went wrong while fetching category');
-              },
-            ));
+                      },
+                      itemCount: categories.length,
+                    ),
+                  ),
+                  //list of all products
+                  Expanded(
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2, // Number of items per row
+                              crossAxisSpacing:
+                                  AppConstants.pad8, // Spacing between columns
+                              mainAxisSpacing:
+                                  AppConstants.pad8, // Spacing between rows
+                              mainAxisExtent: 300),
+                      //TODO:make the 300 value responsive
+                      itemCount: state.products.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final product = state.products[index];
+                        return ProductCard(
+                          product: product,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return Text('Something went wrong');
+            }
+          },
+        ));
   }
 }
