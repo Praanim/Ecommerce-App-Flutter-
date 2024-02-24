@@ -1,24 +1,22 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/shared/shared.dart';
-import 'package:eccomerce_frontend/core/utils/custom_error_widget.dart';
+import 'package:eccomerce_frontend/core/widgets/custom_error_widget.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/product_providers.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/state/product_state.dart';
 import 'package:eccomerce_frontend/features/home/presentation/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProductScreen extends ConsumerWidget {
+class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('All Products'),
         ),
-        //TODO:Add filters like in Deardoc Faqs
-        body: Builder(
-          builder: (context) {
+        body: Consumer(
+          builder: (context, ref, child) {
             final state = ref.watch(productNotifierProvider);
             final categories =
                 ref.read(productNotifierProvider.notifier).allCategories;
@@ -27,7 +25,7 @@ class ProductScreen extends ConsumerWidget {
               return Column(
                 children: [
                   SizedBox(
-                    height: 100,
+                    height: 30,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
@@ -40,20 +38,7 @@ class ProductScreen extends ConsumerWidget {
                                 .filterProducts(
                                     categoryId: categories[index].id);
                           },
-                          child: Container(
-                            margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                            decoration: BoxDecoration(
-                              color: Colors.amber.shade50,
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  color: Colors.amber.shade300, width: 1),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 4.0),
-                              child: Text(categoryName),
-                            ),
-                          ),
+                          child: Card(child: Center(child: Text(categoryName))),
                         );
                       },
                       itemCount: categories.length,
@@ -82,8 +67,14 @@ class ProductScreen extends ConsumerWidget {
                   ),
                 ],
               );
+            } else if (state is ProductInitial) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             } else {
-              return Text('Something went wrong');
+              return const CustomErrorWidget(
+                errorMssg: 'Something is wrong',
+              );
             }
           },
         ));

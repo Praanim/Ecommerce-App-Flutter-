@@ -10,7 +10,8 @@ class ProductNotifier extends StateNotifier<ProductState> {
     required this.productReposiotry,
   }) : super(ProductInitial());
 
-  List<Product> products = [];
+  //this will get initialized when the notifier gets initialized.
+  List<Product> _allProducts = [];
   List<Category> allCategories = [];
 
   void getAllProducts() async {
@@ -18,8 +19,8 @@ class ProductNotifier extends StateNotifier<ProductState> {
     eitherResponse.fold((appException) {
       state = ProductFailure(appException: appException);
     }, (apiProducts) {
-      products = apiProducts;
-      state = ProductSuccess(products: products);
+      _allProducts = apiProducts;
+      state = ProductSuccess(products: _allProducts);
     });
   }
 
@@ -34,7 +35,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
 
   void filterProducts({required String categoryId}) {
     state = ProductInitial();
-    final filteredProducts = products.where((product) {
+    final filteredProducts = _allProducts.where((product) {
       return product.category == categoryId;
     }).toList();
     state = ProductSuccess(products: filteredProducts);

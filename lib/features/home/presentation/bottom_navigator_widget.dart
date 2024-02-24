@@ -13,7 +13,8 @@ class BottomNavigatorWidget extends ConsumerWidget {
   //Bottom navigation bar items.
   final List<BottomNavigationBarItem> _items = const [
     BottomNavigationBarItem(
-      icon: Icon(IconConstants.homeIcon,
+      icon: Icon(
+        IconConstants.homeIcon,
       ),
       label: 'Home',
     ),
@@ -36,6 +37,7 @@ class BottomNavigatorWidget extends ConsumerWidget {
     return Scaffold(
       body: child,
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
         currentIndex: ref.watch(currentPageNotifierProvider),
         onTap: (value) {
           ref.read(currentPageNotifierProvider.notifier).setIndex(value);
@@ -56,7 +58,6 @@ class BottomNavigatorWidget extends ConsumerWidget {
         return context.goNamed(RouteConstants.cartScreen);
       case 3:
         return context.goNamed(RouteConstants.profileScreen);
-
     }
   }
 }

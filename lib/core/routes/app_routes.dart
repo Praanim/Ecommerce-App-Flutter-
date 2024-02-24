@@ -1,10 +1,12 @@
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/screens/login_screen.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
 import 'package:eccomerce_frontend/features/home/presentation/bottom_navigator_widget.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/cart_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/favourite_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/home_screen.dart';
+import 'package:eccomerce_frontend/features/product/presentation/screens/product_details_screen.dart';
 import 'package:eccomerce_frontend/features/product/presentation/screens/product_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -54,10 +56,23 @@ final GoRouter router = GoRouter(
                 builder: (context, state) => const HomeScreen(),
                 routes: [
                   GoRoute(
-                    path: 'product',
-                    name: RouteConstants.productScreen,
-                    builder: (context, state) => const ProductScreen(),
-                  )
+                      path: 'product',
+                      name: RouteConstants.productScreen,
+                      builder: (context, state) => const ProductScreen(),
+                      routes: [
+                        GoRoute(
+                          path: 'product-details',
+                          name: RouteConstants.productDetailsScreen,
+                          builder: (context, state) {
+                            final map = state.extra as Map<String, dynamic>;
+                            final Product product = map['product'];
+
+                            return ProductDetailsScreen(
+                              product: product,
+                            );
+                          },
+                        )
+                      ])
                 ]),
             GoRoute(
               path: '/favourite',
