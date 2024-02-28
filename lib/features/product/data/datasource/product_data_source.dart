@@ -33,7 +33,7 @@ class ProductRemoteDataSource extends ProductDataSource {
         AppException(
           message: 'Unknown error occurred',
           statusCode: 4,
-          identifier: '${e.toString()}\nHomeRemoteDataSource.getAllProducts',
+          identifier: '${e.toString()}\nProductRemoteDataSource.getAllProducts',
         ),
       );
     }

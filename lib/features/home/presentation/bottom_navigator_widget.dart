@@ -1,5 +1,6 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
+import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_providers.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/bottom_navigation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,25 +9,30 @@ import 'package:go_router/go_router.dart';
 class BottomNavigatorWidget extends ConsumerWidget {
   //Bottom navigation screen to be displayed.
   final Widget child;
-  const BottomNavigatorWidget({super.key, required this.child});
+  BottomNavigatorWidget({super.key, required this.child});
 
   //Bottom navigation bar items.
-  final List<BottomNavigationBarItem> _items = const [
-    BottomNavigationBarItem(
+  final List<BottomNavigationBarItem> _items = [
+    const BottomNavigationBarItem(
       icon: Icon(
         IconConstants.homeIcon,
       ),
       label: 'Home',
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(IconConstants.favouriteIcon),
       label: 'Favourite',
     ),
     BottomNavigationBarItem(
-      icon: Icon(IconConstants.cartIcon),
+      icon: Consumer(builder: (context, ref, child) {
+        final itemCount = ref.watch(cartItemsCountProvider);
+        return Badge(
+            label: Text(itemCount.toString()),
+            child: const Icon(IconConstants.cartIcon));
+      }),
       label: 'Cart',
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(IconConstants.profileIcon),
       label: 'Profile',
     ),

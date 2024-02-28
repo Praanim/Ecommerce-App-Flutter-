@@ -1,9 +1,11 @@
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/screens/login_screen.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_notifier.dart';
 import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
 import 'package:eccomerce_frontend/features/home/presentation/bottom_navigator_widget.dart';
-import 'package:eccomerce_frontend/features/home/presentation/screens/cart_screen.dart';
+import 'package:eccomerce_frontend/features/cart/presentation/screens/cart_screen.dart';
+import 'package:eccomerce_frontend/features/home/presentation/providers/state/product_notifier.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/favourite_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/home_screen.dart';
 import 'package:eccomerce_frontend/features/product/presentation/screens/product_details_screen.dart';
@@ -11,6 +13,7 @@ import 'package:eccomerce_frontend/features/product/presentation/screens/product
 import 'package:eccomerce_frontend/features/home/presentation/screens/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> rootNavigator = GlobalKey();
@@ -26,7 +29,15 @@ final GoRouter router = GoRouter(
         builder: (context, state) {
           return const LoginScreen();
         },
-        redirect: (context, state) {
+        redirect: (context, state) async {
+          final container = ProviderScope.containerOf(context);
+          await container
+              .read(cartNotifierProvider.notifier)
+              .getCartForTheUser();
+          // print(testValue);
+
+          //TODO: important fetch activities yeta halni ani tespaxi native screen pop
+
           //TODO: make this code more clean
           final currentUser = FirebaseAuth.instance.currentUser;
           if (currentUser != null) {
