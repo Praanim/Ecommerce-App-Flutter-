@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  esewa_flutter_sdk:
+    path: ./esewa_flutter_sdk
   go_router: ^13.0.1
   dio: ^5.4.0
   flutter_riverpod: ^2.4.9

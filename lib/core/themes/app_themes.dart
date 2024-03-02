@@ -71,16 +71,17 @@ class AppTheme {
         ),
         displayMedium: TextStyle(
           fontSize: 14,
-          color: LightColor.secondaryColor,
+          color: LightColor.lightGrey,
           fontWeight: FontWeight.w600,
         ),
         displaySmall: TextStyle(
           fontSize: 12,
-          color: LightColor.secondaryColor,
+          color: LightColor.lightGrey,
           fontWeight: FontWeight.w500,
         ),
       ),
       colorScheme: const ColorScheme.light(
-        primary: LightColor.primaryColor,
-      ));
+          primary: LightColor.primaryColor,
+          secondary: LightColor.secondaryColor,
+          tertiary: LightColor.tertiaryColor));
 }

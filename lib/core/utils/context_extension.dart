@@ -15,8 +15,17 @@ enum ToastType {
 
 ///Helper Extension
 extension HelperExtension on BuildContext {
+  ///get texttheme extension
+  TextTheme get appTextTheme => Theme.of(this).textTheme;
+
+  ///get screen height extension
+  double get screenHeight => MediaQuery.of(this).size.height;
+
   ///card theme extension
   CardTheme get cardTheme => Theme.of(this).cardTheme;
+
+  ///get color scheme of the app
+  ColorScheme get appColorScheme => Theme.of(this).colorScheme;
 
   ///SnackBar Extension
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
