@@ -20,9 +20,9 @@ class AuthButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(authStateNotifierProvider);
+    final state = ref.watch(authNotifierProvider);
 
-    ref.listen(authStateNotifierProvider, (previous, next) {
+    ref.listen(authNotifierProvider, (previous, next) {
       if (next is AuthSuccess) {
         context.goNamed(RouteConstants.homeScreen); //navigate to homeScreen
       } else if (next is AuthFailure) {

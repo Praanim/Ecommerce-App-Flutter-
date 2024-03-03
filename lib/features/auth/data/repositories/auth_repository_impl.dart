@@ -18,4 +18,10 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<Either<AppException, void>> signUpUser({required UserModel user}) {
     return authDataSource.signUp(user: user);
   }
+
+  @override
+  Future<Either<AppException, UserModel>> getUserByEmail(
+      {required String email}) {
+    return authDataSource.getUserByEmail(email);
+  }
 }

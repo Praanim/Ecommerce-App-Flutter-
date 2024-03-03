@@ -1,25 +1,40 @@
-class UserModel{
+class UserModel {
+  final String? id;
+  final String? fullName;
   final String? email;
+  final String? address;
+  final String? city;
+  final String? state;
   final String? password;
-  final String? uid;
 
-  const UserModel({
-    this.email,
-    this.password,
-    this.uid
-  });
+  const UserModel(
+      {this.id,
+      this.fullName,
+      this.email,
+      this.address,
+      this.city,
+      this.state,
+      this.password});
 
-  factory UserModel.fromJson(Map<String,dynamic> map){
+  factory UserModel.fromJson(Map<String, dynamic> map) {
     return UserModel(
+      id: map['id'],
+      fullName: map['fullName'],
       email: map['email'],
-      password: map['password'],
+      address: map['address'],
+      city: map['city'],
+      state: map['state'],
     );
   }
 
-  Map<String,dynamic> toJson(){
+  Map<String, dynamic> toJson() {
     return {
+      'id': id,
+      'fullName': fullName,
       'email': email,
-      'password': password
+      'address': address,
+      'city': city,
+      'state': state,
     };
   }
 }

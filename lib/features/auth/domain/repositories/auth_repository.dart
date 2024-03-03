@@ -7,4 +7,7 @@ abstract class AuthRepository {
   Future<Either<AppException, void>> signInUser({required UserModel user});
 
   Future<Either<AppException, void>> signUpUser({required UserModel user});
+
+  Future<Either<AppException, UserModel>> getUserByEmail(
+      {required String email});
 }

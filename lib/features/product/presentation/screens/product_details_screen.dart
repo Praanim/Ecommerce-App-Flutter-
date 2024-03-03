@@ -5,12 +5,15 @@ import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/core/utils/gap.dart';
 import 'package:eccomerce_frontend/core/widgets/custom_card.dart';
 import 'package:eccomerce_frontend/core/widgets/custom_elevated_button.dart';
+import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
+import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_notifier.dart';
 import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
 import 'package:esewa_flutter_sdk/esewa_config.dart';
 import 'package:esewa_flutter_sdk/esewa_flutter_sdk.dart';
 import 'package:esewa_flutter_sdk/esewa_payment.dart';
 import 'package:esewa_flutter_sdk/esewa_payment_success_result.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   ///Individual Product Model
@@ -32,13 +35,19 @@ class ProductDetailsScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CustomElevatedButton(
-                title: 'Add to cart',
-                onPressed: () {},
-                titleStyle: context.appTextTheme.displaySmall!
-                    .copyWith(color: context.appColorScheme.primary),
-                btnStyle: CustomBtnStyle.secondaryBtnStyle(context),
-              ),
+              Consumer(builder: (context, ref, child) {
+                return CustomElevatedButton(
+                  title: 'Add to cart',
+                  onPressed: () {
+                    //TODO:make quantity dynamicx
+                    ref.read(cartNotifierProvider.notifier).addProductToCart(
+                        ref.read(userDataProvider)!.id!, product, 1);
+                  },
+                  titleStyle: context.appTextTheme.displaySmall!
+                      .copyWith(color: context.appColorScheme.primary),
+                  btnStyle: CustomBtnStyle.secondaryBtnStyle(context),
+                );
+              }),
               CustomElevatedButton(
                 title: 'Buy Now',
                 onPressed: () {

@@ -1,6 +1,7 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
+import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/product_providers.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/state/product_state.dart';
 import 'package:eccomerce_frontend/features/home/presentation/widgets/product_card.dart';

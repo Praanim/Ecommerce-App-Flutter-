@@ -42,6 +42,7 @@ mixin ExceptionHandlerMixin on NetworkService {
           message = 'Unknown error occurred';
           statusCode = 2;
           identifier = 'Unknown error ${e.toString()}\n at $endPoint';
+          break;
       }
 
       return Left(AppException(

@@ -33,6 +33,18 @@ class Product {
       updatedOn: DateTime.parse(json['updatedOn'] as String),
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      '_id': id,
+      'category': category,
+      'title': title,
+      'description': description,
+      'price': price,
+      'images': images,
+      'sales': sales?.toJson(), // Convert Sales object to JSON
+    };
+  }
 }
 
 class Sales {
@@ -57,4 +69,3 @@ class Sales {
     };
   }
 }
-

@@ -67,7 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   onPressed: () async {
                     if (_doubleCheckPassword(context)) {
                       //proceed with signUp
-                      ref.read(authStateNotifierProvider.notifier).signUpUser(
+                      ref.read(authNotifierProvider.notifier).signUpUser(
                           email: _emailController.text,
                           password: _passwordController.text);
                     }

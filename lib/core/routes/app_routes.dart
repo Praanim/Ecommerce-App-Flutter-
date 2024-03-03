@@ -1,4 +1,5 @@
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
+import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/screens/login_screen.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_notifier.dart';
@@ -30,17 +31,27 @@ final GoRouter router = GoRouter(
           return const LoginScreen();
         },
         redirect: (context, state) async {
-          final container = ProviderScope.containerOf(context);
-          await container
-              .read(cartNotifierProvider.notifier)
-              .getCartForTheUser();
           // print(testValue);
 
           //TODO: important fetch activities yeta halni ani tespaxi native screen pop
-
           //TODO: make this code more clean
           final currentUser = FirebaseAuth.instance.currentUser;
           if (currentUser != null) {
+            //provider container.
+            final container = ProviderScope.containerOf(context);
+
+            //get user info from db
+            final result = await container
+                .read(getUserByEmailFutureProvider(currentUser.email!).future);
+            if (result == null) {
+              //null means some error has occure so navigate the user to login screen.
+              return '/login';
+            }
+
+            //get cart for the respective user.
+            await container
+                .read(cartNotifierProvider.notifier)
+                .getCartForTheUser(currentUser.uid);
             return '/home';
           }
           return '/login';

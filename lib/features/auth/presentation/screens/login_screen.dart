@@ -50,21 +50,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 textEditingController: _passwordController,
                 labelText: "Password"),
             VerticalGap.xxl,
-           Consumer(
-             builder: (context,ref,_) {
-               return AuthButton(
+            Consumer(builder: (context, ref, _) {
+              return AuthButton(
                 text: 'Login',
-                onPressed: ()async{
-                    final authStateNotifier =
-                          ref.read(authStateNotifierProvider.notifier);
-                      await authStateNotifier.loginUser(
-                        email: _emailController.text,
-                        password: _passwordController.text,
-                      );
+                onPressed: () async {
+                  final authStateNotifier =
+                      ref.read(authNotifierProvider.notifier);
+                  await authStateNotifier.loginUser(
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                  );
                 },
-               );
-             }
-           ),
+              );
+            }),
             VerticalGap.l,
             TextButton(
               onPressed: () {
