@@ -1,11 +1,12 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
+import 'package:eccomerce_frontend/core/utils/gap.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/product_providers.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/state/product_state.dart';
 import 'package:eccomerce_frontend/features/home/presentation/widgets/custom_carousel_slider.dart';
 import 'package:eccomerce_frontend/features/home/presentation/widgets/product_card.dart';
+import 'package:eccomerce_frontend/features/home/presentation/widgets/product_filter_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -16,68 +17,92 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CustomCarouselSlider(),
-          Divider(
-            thickness: 2.0,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppConstants.pad8),
-            child: Column(
-              children: [
-                productFilterRow(
-                    filterCategory: 'Recently Added',
-                    onTap: () {
-                      context.goNamed(RouteConstants.productScreen);
-                    }),
-                SizedBox(
-                  height: 250,
-                  child: Consumer(
-                    builder: (context, ref, child) {
-                      final state = ref.watch(productNotifierProvider);
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomCarouselSlider(),
+            VerticalGap.s,
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: AppConstants.pad8),
+              child: Consumer(builder: (context, ref, child) {
+                final state = ref.watch(productNotifierProvider);
+                final sizedBoxHeight = context.screenHeight / 3;
+                if (state is ProductSuccess) {
+                  //get recently added products
+                  final recentlyAddedProducts = ref
+                      .read(productNotifierProvider.notifier)
+                      .getRecentlyAddedProducts();
 
-                      if (state is ProductSuccess) {
-                        return ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: state.products.length,
-                          itemBuilder: (context, index) {
-                            final product = state.products[index];
+                  //get top sales product
+                  final getTopSalesProduct = ref
+                      .read(productNotifierProvider.notifier)
+                      .getTopSalesProducts();
 
-                            return ProductCard(product: product);
-                          },
-                        );
-                      } else if (state is ProductFailure) {
-                        return Text(state.appException.identifier);
-                      } else {
-                        //TODO:make it common widget
-                        return const CircularProgressIndicator();
-                      }
-                    },
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
+                  return Column(
+                    children: [
+                      //Recently added products
+                      SizedBox(
+                        height: sizedBoxHeight,
+                        child: Column(
+                          children: [
+                            ProductFilterRow(
+                              title: 'Recently Added',
+                              onTap: () {
+                                context.goNamed(RouteConstants.productScreen);
+                              },
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: recentlyAddedProducts.length,
+                                itemBuilder: (context, index) {
+                                  final product = recentlyAddedProducts[index];
 
-  Widget productFilterRow({
-    required String filterCategory,
-    void Function()? onTap,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: AppConstants.pad4, vertical: AppConstants.pad4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(filterCategory),
-          InkWell(onTap: onTap, child: Text('View All'))
-        ],
+                                  return ProductCard(product: product);
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      VerticalGap.s,
+                      //Top sales products
+                      SizedBox(
+                        height: sizedBoxHeight,
+                        child: Column(
+                          children: [
+                            ProductFilterRow(
+                              title: 'Top Sales',
+                              onTap: () {},
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: getTopSalesProduct.length,
+                                itemBuilder: (context, index) {
+                                  final product = getTopSalesProduct[index];
+
+                                  return ProductCard(product: product);
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  );
+                } else if (state is ProductFailure) {
+                  return Text(state.appException.identifier);
+                } else {
+                  //TODO:make it common widget
+                  return const CircularProgressIndicator();
+                }
+              }),
+            )
+          ],
+        ),
       ),
     );
   }

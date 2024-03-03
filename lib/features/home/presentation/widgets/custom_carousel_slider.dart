@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
+import 'package:eccomerce_frontend/core/widgets/image_container.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/carousel_count_provider.dart';
 import 'package:eccomerce_frontend/features/product/presentation/screens/product_details_screen.dart';
 import 'package:flutter/material.dart';

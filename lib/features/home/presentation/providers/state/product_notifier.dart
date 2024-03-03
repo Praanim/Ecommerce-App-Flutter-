@@ -40,5 +40,33 @@ class ProductNotifier extends StateNotifier<ProductState> {
     }).toList();
     state = ProductSuccess(products: filteredProducts);
   }
-  // state.products.sort((a, b) => b.createdOn.compareTo(a.createdOn));
+
+  List<Product> getRecentlyAddedProducts({int limit = 5}) {
+    if (state is ProductSuccess && _allProducts.isNotEmpty) {
+      final tempList = _allProducts;
+      tempList.sort((a, b) => b.createdOn.compareTo(a.createdOn));
+
+      // Take only the first 'limit' number of products
+      return tempList.take(limit).toList();
+    } else {
+      return [];
+    }
+  }
+
+  List<Product> getTopSalesProducts({int limit = 5}) {
+    if (state is ProductSuccess && _allProducts.isNotEmpty) {
+      final tempList = _allProducts;
+      try {
+        tempList.sort(
+            (a, b) => b.sales!.quantitySold.compareTo(a.sales!.quantitySold));
+      } catch (e) {
+        return [];
+      }
+
+      // Take only the first 'limit' number of products
+      return tempList.take(limit).toList();
+    } else {
+      return [];
+    }
+  }
 }

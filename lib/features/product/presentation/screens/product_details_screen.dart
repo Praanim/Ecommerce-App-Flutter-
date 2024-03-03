@@ -5,6 +5,7 @@ import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/core/utils/gap.dart';
 import 'package:eccomerce_frontend/core/widgets/custom_card.dart';
 import 'package:eccomerce_frontend/core/widgets/custom_elevated_button.dart';
+import 'package:eccomerce_frontend/core/widgets/image_container.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
 import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_notifier.dart';
 import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
@@ -144,30 +145,6 @@ class PriceTag extends StatelessWidget {
         'Rs. $price',
         style: context.appTextTheme.displayMedium!.copyWith(
             fontSize: ValConstants.value16, color: DarkColor.secondaryColor),
-      ),
-    );
-  }
-}
-
-class ImageContainer extends StatelessWidget {
-  final String imageUrl;
-
-  const ImageContainer({
-    super.key,
-    required this.imageUrl,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: context.screenHeight / 1.9,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(ValConstants.value24),
-            bottomRight: Radius.circular(ValConstants.value24)),
-        image:
-            DecorationImage(fit: BoxFit.cover, image: NetworkImage(imageUrl)),
       ),
     );
   }
