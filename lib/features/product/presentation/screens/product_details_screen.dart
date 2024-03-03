@@ -28,7 +28,9 @@ class ProductDetailsScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const _ImageContainer(),
+          const ImageContainer(
+            imageUrl: ImageConstants.randomNetworkImageUrl,
+          ),
           VerticalGap.s,
           ProductDescriptionContainer(product: product),
           VerticalGap.s,
@@ -147,9 +149,12 @@ class PriceTag extends StatelessWidget {
   }
 }
 
-class _ImageContainer extends StatelessWidget {
-  const _ImageContainer({
+class ImageContainer extends StatelessWidget {
+  final String imageUrl;
+
+  const ImageContainer({
     super.key,
+    required this.imageUrl,
   });
 
   @override
@@ -157,13 +162,12 @@ class _ImageContainer extends StatelessWidget {
     return Container(
       height: context.screenHeight / 1.9,
       width: double.infinity,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(ValConstants.value24),
             bottomRight: Radius.circular(ValConstants.value24)),
-        image: DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage(ImageConstants.randomNetworkImageUrl)),
+        image:
+            DecorationImage(fit: BoxFit.cover, image: NetworkImage(imageUrl)),
       ),
     );
   }

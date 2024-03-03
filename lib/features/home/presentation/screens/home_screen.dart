@@ -4,6 +4,7 @@ import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/product_providers.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/state/product_state.dart';
+import 'package:eccomerce_frontend/features/home/presentation/widgets/custom_carousel_slider.dart';
 import 'package:eccomerce_frontend/features/home/presentation/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,19 +16,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Keep Search Bar here"),
-      ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(
-            height: 170,
-            child: Center(
-                child: Text(
-              "Keep Sliding Images Here",
-            )),
-          ),
+          CustomCarouselSlider(),
           Divider(
             thickness: 2.0,
           ),

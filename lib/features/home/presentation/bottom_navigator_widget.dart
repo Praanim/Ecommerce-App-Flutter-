@@ -1,5 +1,6 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
+import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_providers.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/bottom_navigation_provider.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class BottomNavigatorWidget extends ConsumerWidget {
       icon: Consumer(builder: (context, ref, child) {
         final itemCount = ref.watch(cartItemsCountProvider);
         return Badge(
+            backgroundColor: context.appColorScheme.primary,
             label: Text(itemCount.toString()),
             child: const Icon(IconConstants.cartIcon));
       }),
