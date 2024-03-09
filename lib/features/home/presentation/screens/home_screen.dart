@@ -47,11 +47,8 @@ class HomeScreen extends StatelessWidget {
                         height: sizedBoxHeight,
                         child: Column(
                           children: [
-                            ProductFilterRow(
+                            const ProductFilterRow(
                               title: 'Recently Added',
-                              onTap: () {
-                                context.goNamed(RouteConstants.productScreen);
-                              },
                             ),
                             Expanded(
                               child: ListView.builder(
@@ -73,9 +70,8 @@ class HomeScreen extends StatelessWidget {
                         height: sizedBoxHeight,
                         child: Column(
                           children: [
-                            ProductFilterRow(
+                            const ProductFilterRow(
                               title: 'Top Sales',
-                              onTap: () {},
                             ),
                             Expanded(
                               child: ListView.builder(

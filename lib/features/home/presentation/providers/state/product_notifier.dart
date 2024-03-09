@@ -69,4 +69,8 @@ class ProductNotifier extends StateNotifier<ProductState> {
       return [];
     }
   }
+
+  void resetStateToProductSuccess() {
+    state = ProductSuccess(products: _allProducts);
+  }
 }

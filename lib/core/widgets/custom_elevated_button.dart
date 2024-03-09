@@ -32,7 +32,7 @@ class CustomElevatedButton extends StatelessWidget {
         child: Text(
           title,
           style: titleStyle ??
-              context.appTextTheme.displaySmall!
+              context.appTextTheme.displayMedium!
                   .copyWith(color: DarkColor.secondaryColor),
         ));
   }

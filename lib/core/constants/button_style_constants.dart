@@ -4,7 +4,9 @@ import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class CustomBtnStyle {
-  static ButtonStyle secondaryBtnStyle(BuildContext context) {
+  static ButtonStyle secondaryBtnStyle(
+    BuildContext context,
+  ) {
     return ElevatedButton.styleFrom(
         backgroundColor: DarkColor.secondaryColor,
         padding: const EdgeInsets.all(ValConstants.value16),

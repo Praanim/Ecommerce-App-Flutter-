@@ -1,12 +1,16 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
+import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductFilterRow extends StatelessWidget {
   final String title;
 
-  final void Function()? onTap;
-  const ProductFilterRow({super.key, required this.title, this.onTap});
+  const ProductFilterRow({
+    super.key,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,9 @@ class ProductFilterRow extends StatelessWidget {
                 .copyWith(color: primaryColor, fontWeight: FontWeight.w600),
           ),
           InkWell(
-              onTap: onTap,
+              onTap: () {
+                context.goNamed(RouteConstants.productScreen);
+              },
               child: Text(
                 'View All',
                 style: context.appTextTheme.titleMedium!.copyWith(
