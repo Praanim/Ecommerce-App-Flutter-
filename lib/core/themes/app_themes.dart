@@ -37,7 +37,7 @@ class AppTheme {
         headlineSmall: TextStyle(
           color: LightColor.secondaryColor,
           fontSize: 18,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w600,
         ),
         bodyLarge: TextStyle(
           color: LightColor.secondaryColor,
@@ -80,6 +80,7 @@ class AppTheme {
           fontWeight: FontWeight.w500,
         ),
       ),
+      iconTheme: const IconThemeData(color: LightColor.primaryColor),
       colorScheme: const ColorScheme.light(
           primary: LightColor.primaryColor,
           secondary: LightColor.secondaryColor,

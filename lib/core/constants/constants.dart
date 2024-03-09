@@ -18,6 +18,9 @@ class AppConstants {
 
   ///provides padding of 16 pixel
   static const double pad16 = 16;
+
+  ///primary border radius
+  static const double primaryBorderRadius = 10;
 }
 
 class IconConstants {
@@ -46,6 +49,9 @@ class ValConstants {
 
   /// Provides value of 8.0
   static const double value8 = 8.0;
+
+  ///Provides value of 10.0
+  static const double value10 = 10.0;
 
   /// Provides value of 12.0
   static const double value12 = 12.0;

@@ -1,7 +1,7 @@
 import 'package:eccomerce_frontend/features/cart/domain/providers/cart_source_providers.dart';
 import 'package:eccomerce_frontend/features/cart/domain/repositories/cart_repository.dart';
 import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_providers.dart';
-import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_state.dart';
+import 'package:eccomerce_frontend/features/cart/presentation/providers/notifiers/cart_state.dart';
 import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

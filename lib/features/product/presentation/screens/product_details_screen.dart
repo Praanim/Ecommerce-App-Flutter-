@@ -7,7 +7,7 @@ import 'package:eccomerce_frontend/core/widgets/custom_card.dart';
 import 'package:eccomerce_frontend/core/widgets/custom_elevated_button.dart';
 import 'package:eccomerce_frontend/core/widgets/image_container.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
-import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_notifier.dart';
+import 'package:eccomerce_frontend/features/cart/presentation/providers/notifiers/cart_notifier.dart';
 import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
 import 'package:esewa_flutter_sdk/esewa_config.dart';
 import 'package:esewa_flutter_sdk/esewa_flutter_sdk.dart';

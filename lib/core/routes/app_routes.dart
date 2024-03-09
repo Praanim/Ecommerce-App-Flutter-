@@ -2,7 +2,7 @@ import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/screens/login_screen.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/screens/sign_up_screen.dart';
-import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_notifier.dart';
+import 'package:eccomerce_frontend/features/cart/presentation/providers/notifiers/cart_notifier.dart';
 import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
 import 'package:eccomerce_frontend/features/home/presentation/bottom_navigator_widget.dart';
 import 'package:eccomerce_frontend/features/cart/presentation/screens/cart_screen.dart';
