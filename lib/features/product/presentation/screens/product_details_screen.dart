@@ -1,5 +1,6 @@
 import 'package:eccomerce_frontend/core/constants/button_style_constants.dart';
 import 'package:eccomerce_frontend/core/constants/constants.dart';
+import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/core/utils/gap.dart';
 import 'package:eccomerce_frontend/core/widgets/custom_elevated_button.dart';
@@ -14,6 +15,7 @@ import 'package:esewa_flutter_sdk/esewa_payment.dart';
 import 'package:esewa_flutter_sdk/esewa_payment_success_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   ///Individual Product Model
@@ -33,17 +35,25 @@ class ProductDetailsScreen extends StatelessWidget {
           ),
           VerticalGap.s,
           ProductDescriptionContainer(product: product),
-          VerticalGap.s,
+          VerticalGap.l,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Consumer(builder: (context, ref, child) {
                 return CustomElevatedButton(
                   title: 'Add to cart',
-                  onPressed: () {
+                  onPressed: () async {
                     //TODO:make quantity dynamicx
-                    ref.read(cartNotifierProvider.notifier).addProductToCart(
-                        ref.read(userDataProvider)!.id!, product, 1);
+                    await ref
+                        .read(cartNotifierProvider.notifier)
+                        .addProductToCart(
+                            ref.read(userDataProvider)!.id!, product, 1)
+                        .then((_) {
+                      context.showSnackBar(
+                          message: 'Product Successfully Added to Cart',
+                          toastType: ToastType.success);
+                      context.pop();
+                    });
                   },
                   titleStyle: context.appTextTheme.displaySmall!
                       .copyWith(color: context.appColorScheme.primary),
@@ -86,7 +96,8 @@ class ProductDetailsScreen extends StatelessWidget {
                 },
               ),
             ],
-          )
+          ),
+          VerticalGap.s,
         ],
       ),
     ));
