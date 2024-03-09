@@ -1,4 +1,5 @@
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
+import 'package:eccomerce_frontend/core/shared/custom_app_bar.dart';
 import 'package:eccomerce_frontend/core/utils/gap.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/widgets/auth_button.dart';
@@ -35,8 +36,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign In'),
+      appBar: const CustomAppBar(
+        title: Text('Sign In'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

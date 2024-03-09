@@ -1,5 +1,6 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
+import 'package:eccomerce_frontend/core/shared/custom_app_bar.dart';
 import 'package:eccomerce_frontend/core/shared/shared.dart';
 import 'package:eccomerce_frontend/core/utils/gap.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
@@ -37,8 +38,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign Up'),
+      appBar: const CustomAppBar(
+        title: Text('Sign In'),
       ),
       body: SingleChildScrollView(
         child: Padding(

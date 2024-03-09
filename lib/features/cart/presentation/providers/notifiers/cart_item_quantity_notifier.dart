@@ -18,8 +18,10 @@ class CartItemCheckoutDetails {
   }
 }
 
-class CartItemQuantityNotifier extends StateNotifier<CartItemCheckoutDetails> {
-  CartItemQuantityNotifier() : super(CartItemCheckoutDetails.initialState());
+class CartItemCheckoutDetailsNotifier
+    extends StateNotifier<CartItemCheckoutDetails> {
+  CartItemCheckoutDetailsNotifier()
+      : super(CartItemCheckoutDetails.initialState());
 
   void increaseQuantity(int itemPrice) {
     final newQuantity = state.quantity + 1;

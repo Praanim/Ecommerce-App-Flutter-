@@ -8,6 +8,8 @@ class LightColor {
   ///Tertiary Color
   static const Color tertiaryColor = Color.fromARGB(125, 112, 176, 129);
 
+  ///onPrimaryColor
+  static const Color onPrimary = Colors.white;
   // /// app bar color
   // static const Color backColor = Color(0xffe5e5e5);
 

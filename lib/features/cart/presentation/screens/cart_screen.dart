@@ -1,4 +1,5 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
+import 'package:eccomerce_frontend/core/shared/custom_app_bar.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/core/widgets/custom_elevated_button.dart';
 import 'package:eccomerce_frontend/core/widgets/custom_error_widget.dart';
@@ -6,9 +7,7 @@ import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_pro
 import 'package:eccomerce_frontend/features/cart/presentation/providers/notifiers/cart_notifier.dart';
 import 'package:eccomerce_frontend/features/cart/presentation/providers/notifiers/cart_state.dart';
 import 'package:eccomerce_frontend/features/cart/presentation/widgets/cart_item_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CartScreen extends StatelessWidget {
@@ -17,8 +16,8 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Cart"),
+      appBar: const CustomAppBar(
+        title: Text('Cart'),
       ),
       body: Consumer(
         builder: (context, ref, child) {

@@ -1,4 +1,3 @@
-import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:eccomerce_frontend/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   ///LightTheme
   static final ThemeData lightThemeData = ThemeData(
+      appBarTheme: const AppBarTheme(
+        color: LightColor.primaryColor,
+      ),
       fontFamily: GoogleFonts.poppins().fontFamily,
       // primaryColor: LightColor.primaryColor,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -84,5 +86,6 @@ class AppTheme {
       colorScheme: const ColorScheme.light(
           primary: LightColor.primaryColor,
           secondary: LightColor.secondaryColor,
-          tertiary: LightColor.tertiaryColor));
+          tertiary: LightColor.tertiaryColor,
+          onPrimary: LightColor.onPrimary));
 }

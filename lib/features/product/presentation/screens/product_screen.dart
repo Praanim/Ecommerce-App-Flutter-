@@ -1,5 +1,6 @@
 import 'package:eccomerce_frontend/core/constants/button_style_constants.dart';
 import 'package:eccomerce_frontend/core/constants/constants.dart';
+import 'package:eccomerce_frontend/core/shared/custom_app_bar.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/core/widgets/custom_elevated_button.dart';
 import 'package:eccomerce_frontend/core/widgets/custom_error_widget.dart';
@@ -17,8 +18,8 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('All Products'),
+        appBar: const CustomAppBar(
+          title: Text('Products'),
         ),
         body: Consumer(
           builder: (context, ref, child) {
