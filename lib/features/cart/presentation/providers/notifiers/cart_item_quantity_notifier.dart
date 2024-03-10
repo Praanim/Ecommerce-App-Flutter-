@@ -34,7 +34,7 @@ class CartItemCheckoutDetailsNotifier
   }
 
   void decreaseQuantity(int itemPrice) {
-    if (state.quantity == 1) {
+    if (state.quantity == 0) {
       return;
     }
     final newQuantity = state.quantity - 1;

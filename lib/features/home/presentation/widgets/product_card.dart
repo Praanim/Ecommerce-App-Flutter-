@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
+import 'package:eccomerce_frontend/core/shared/shared.dart';
+import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -16,15 +19,13 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: () {
-        //TODO:add directly to favourites
-      },
       onTap: () {
         context.goNamed(RouteConstants.productDetailsScreen,
             extra: {'product': product});
       },
       child: Card(
         clipBehavior: Clip.antiAlias,
+        color: context.appColorScheme.primary,
         child: SizedBox(
           // height: MediaQuery.of(context).size.height/ 3,
           width: MediaQuery.of(context).size.width / 2.2,
@@ -33,10 +34,10 @@ class ProductCard extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(
-                              ImageConstants.randomNetworkImageUrl),
+                          image: CachedNetworkImageProvider(
+                              SharedClass.checkAvailableProductImage(product)),
                           fit: BoxFit.cover)),
                 ),
               ),
@@ -48,8 +49,15 @@ class ProductCard extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(product.title),
-                        Text('Rs.${product.price}')
+                        Text(
+                          product.title,
+                          style: context.appTextTheme.titleLarge!
+                              .copyWith(fontWeight: FontWeight.w800),
+                        ),
+                        Text(
+                          'Rs.${product.price}',
+                          style: context.appTextTheme.displayMedium,
+                        )
                       ],
                     ),
                   ))

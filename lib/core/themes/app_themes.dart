@@ -9,6 +9,9 @@ class AppTheme {
       appBarTheme: const AppBarTheme(
         color: LightColor.primaryColor,
       ),
+      listTileTheme: const ListTileThemeData(
+          iconColor: LightColor.secondaryColor,
+          tileColor: LightColor.tertiaryColor),
       fontFamily: GoogleFonts.poppins().fontFamily,
       // primaryColor: LightColor.primaryColor,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -32,7 +35,7 @@ class AppTheme {
           fontWeight: FontWeight.w700,
         ),
         headlineMedium: TextStyle(
-          color: LightColor.secondaryColor,
+          color: LightColor.onPrimary,
           fontSize: 20,
           fontWeight: FontWeight.w600,
         ),
@@ -67,13 +70,13 @@ class AppTheme {
           fontWeight: FontWeight.w500,
         ),
         titleLarge: TextStyle(
-          color: LightColor.secondaryColor,
+          color: LightColor.onPrimary,
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
         displayMedium: TextStyle(
           fontSize: 14,
-          color: LightColor.lightGrey,
+          color: LightColor.onPrimary,
           fontWeight: FontWeight.w600,
         ),
         displaySmall: TextStyle(

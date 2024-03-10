@@ -1,4 +1,5 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
+import 'package:eccomerce_frontend/core/shared/shared.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/core/utils/gap.dart';
 import 'package:eccomerce_frontend/features/cart/domain/models/cart_model.dart';
@@ -32,10 +33,11 @@ class CartItemWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius:
                       BorderRadius.circular(AppConstants.primaryBorderRadius),
-                  image: const DecorationImage(
+                  image: DecorationImage(
                       fit: BoxFit.cover,
-                      image:
-                          NetworkImage(ImageConstants.randomNetworkImageUrl))),
+                      image: NetworkImage(
+                          SharedClass.checkAvailableProductImage(
+                              cartItem.product)))),
             ),
             HorizontalGap.xl,
             Expanded(

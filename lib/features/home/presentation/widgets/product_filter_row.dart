@@ -23,8 +23,11 @@ class ProductFilterRow extends StatelessWidget {
         children: [
           Text(
             title,
-            style: context.appTextTheme.headlineSmall!
-                .copyWith(color: primaryColor, fontWeight: FontWeight.w600),
+            style: context.appTextTheme.headlineSmall!.copyWith(
+                color: primaryColor,
+                fontWeight: FontWeight.w600,
+                decoration: TextDecoration.underline,
+                decorationColor: primaryColor),
           ),
           InkWell(
               onTap: () {

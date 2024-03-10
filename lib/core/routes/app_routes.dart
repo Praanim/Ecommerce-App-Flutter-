@@ -6,12 +6,11 @@ import 'package:eccomerce_frontend/features/cart/presentation/providers/notifier
 import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
 import 'package:eccomerce_frontend/features/home/presentation/bottom_navigator_widget.dart';
 import 'package:eccomerce_frontend/features/cart/presentation/screens/cart_screen.dart';
-import 'package:eccomerce_frontend/features/home/presentation/providers/state/product_notifier.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/favourite_screen.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/home_screen.dart';
 import 'package:eccomerce_frontend/features/product/presentation/screens/product_details_screen.dart';
 import 'package:eccomerce_frontend/features/product/presentation/screens/product_screen.dart';
-import 'package:eccomerce_frontend/features/home/presentation/screens/profile_screen.dart';
+import 'package:eccomerce_frontend/features/profile/presentation/screens/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,8 +30,6 @@ final GoRouter router = GoRouter(
           return const LoginScreen();
         },
         redirect: (context, state) async {
-          // print(testValue);
-
           //TODO: important fetch activities yeta halni ani tespaxi native screen pop
           //TODO: make this code more clean
           final currentUser = FirebaseAuth.instance.currentUser;
@@ -45,6 +42,8 @@ final GoRouter router = GoRouter(
                 .read(getUserByEmailFutureProvider(currentUser.email!).future);
             if (result == null) {
               //null means some error has occure so navigate the user to login screen.
+              //TODO:review this code and whole page.
+              await FirebaseAuth.instance.signOut();
               return '/login';
             }
 
@@ -109,7 +108,7 @@ final GoRouter router = GoRouter(
             GoRoute(
               path: '/profile',
               name: RouteConstants.profileScreen,
-              builder: (context, state) => const ProfileScreen(),
+              builder: (context, state) => ProfileScreen(),
             ),
           ])
     ]);

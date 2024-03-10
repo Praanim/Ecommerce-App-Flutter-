@@ -1,6 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eccomerce_frontend/core/constants/button_style_constants.dart';
-import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/routes/route_constants.dart';
+import 'package:eccomerce_frontend/core/shared/shared.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/core/utils/gap.dart';
 import 'package:eccomerce_frontend/core/widgets/custom_elevated_button.dart';
@@ -30,8 +30,9 @@ class ProductDetailsScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ImageContainer(
-            imageUrl: ImageConstants.randomNetworkImageUrl,
+          ImageContainer(
+            image: CachedNetworkImageProvider(
+                SharedClass.checkAvailableProductImage(product)),
           ),
           VerticalGap.s,
           ProductDescriptionContainer(product: product),

@@ -29,11 +29,7 @@ class CustomElevatedButton extends StatelessWidget {
             ElevatedButton.styleFrom(
                 padding: const EdgeInsets.all(ValConstants.value16),
                 backgroundColor: context.appColorScheme.primary),
-        child: Text(
-          title,
-          style: titleStyle ??
-              context.appTextTheme.displayMedium!
-                  .copyWith(color: DarkColor.secondaryColor),
-        ));
+        child: Text(title,
+            style: titleStyle ?? context.appTextTheme.displayMedium));
   }
 }

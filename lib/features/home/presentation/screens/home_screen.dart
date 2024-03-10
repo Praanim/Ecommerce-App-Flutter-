@@ -1,5 +1,4 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/core/utils/gap.dart';
 import 'package:eccomerce_frontend/features/home/presentation/providers/product_providers.dart';
@@ -9,7 +8,6 @@ import 'package:eccomerce_frontend/features/home/presentation/widgets/product_ca
 import 'package:eccomerce_frontend/features/home/presentation/widgets/product_filter_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

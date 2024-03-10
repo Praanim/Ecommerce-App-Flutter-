@@ -37,8 +37,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       leading: leadingIcon,
       title: title,
-      titleTextStyle: context.appTextTheme.headlineMedium!
-          .copyWith(color: context.appColorScheme.onPrimary),
+      titleTextStyle: context.appTextTheme.headlineMedium,
       centerTitle: centerTitle,
       automaticallyImplyLeading: automaticallyImplyLeading,
     );

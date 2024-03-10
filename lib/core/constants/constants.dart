@@ -35,6 +35,12 @@ class IconConstants {
 
   ///profike icon(bottom navigation bar)
   static const IconData profileIcon = Icons.person;
+
+  ///provides size --> 20
+  static const double iconPrimarySize = 20;
+
+  ///provides size --> 24
+  static const double iconSecondarySize = 24;
 }
 
 class ValConstants {
@@ -81,7 +87,11 @@ Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ul
 }
 
 class ImageConstants {
+  static const String carousel1 = 'assets/images/carousel1.jpeg';
+  static const String carousel2 = 'assets/images/carousel2.jpeg';
+  static const String carousel3 = 'assets/images/carousel3.jpeg';
+
   ///random network image Url
   static const String randomNetworkImageUrl =
-      'https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tfGVufDB8fDB8fHww';
+      'https://firebasestorage.googleapis.com/v0/b/ecommerce-app-2fa29.appspot.com/o/chair.jpeg?alt=media&token=952d1127-f679-4b7e-9189-4ee2a8830561';
 }

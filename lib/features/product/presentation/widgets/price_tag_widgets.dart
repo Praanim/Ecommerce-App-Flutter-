@@ -18,8 +18,8 @@ class PriceTag extends StatelessWidget {
       child: Text(
         'Rs. $price',
         style: context.appTextTheme.displayMedium!.copyWith(
-            fontSize: ValConstants.value16,
-            color: context.appColorScheme.onPrimary),
+          fontSize: ValConstants.value16,
+        ),
       ),
     );
   }

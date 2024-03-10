@@ -50,6 +50,11 @@ class AuthNotifier extends Notifier<AuthState> {
           return;
         }, (r) => null);
 
+        //it the state is already failure then no need to proceed.
+        if (state is AuthFailure) {
+          return;
+        }
+
         eitherResponses[1].fold((appException) {
           state = AuthFailure(appException: appException);
         }, (userModel) {
