@@ -20,21 +20,6 @@ class SharedClass {
         identifier: 'FirebaseAuthException${e.message}');
   }
 
-  static void showMySnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(
-      content: Text(message),
-      action: SnackBarAction(
-        label: 'Close',
-        onPressed: () {
-          // Some action to be performed when the "Close" button is pressed
-        },
-      ),
-    );
-
-    // Show the Snackbar
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
   //this method checks if in the product model there is availability of the image or not .
   static String checkAvailableProductImage(Product product) {
     return product.images.isNotEmpty

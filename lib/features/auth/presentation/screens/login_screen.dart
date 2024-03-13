@@ -4,7 +4,9 @@ import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/core/utils/gap.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/widgets/auth_button.dart';
+import 'package:eccomerce_frontend/features/auth/presentation/widgets/auth_header_widget.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/widgets/logo_image_widget.dart';
+import 'package:eccomerce_frontend/features/auth/presentation/widgets/password_widget.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -62,8 +64,9 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 const LogoImageWidget(),
                 VerticalGap.l,
-                Text('Welcome Back!',
-                    style: context.appTextTheme.headlineSmall),
+                const AuthHeader(
+                  text: 'Welcome Back!',
+                ),
                 VerticalGap.l,
                 CustomTextFormField(
                   textEditingController: _emailController,
@@ -74,27 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 VerticalGap.l,
                 // Icons.remove_red_eye_sharp
-                Consumer(builder: (context, ref, child) {
-                  final isPasswordVisibe =
-                      ref.watch(passwordVisibilityProvider);
-                  return CustomTextFormField(
-                    trailing: IconButton(
-                        onPressed: () {
-                          ref.read(passwordVisibilityProvider.notifier).state =
-                              !isPasswordVisibe;
-                        },
-                        icon: isPasswordVisibe
-                            ? const Icon(Icons.visibility_off)
-                            : const Icon(Icons.visibility)),
-                    obscureText: isPasswordVisibe ? false : true,
-                    textEditingController: _passwordController,
-                    labelText: "Password",
-                    textInputAction: TextInputAction.done,
-                    validator: (value) {
-                      return Validations.checkEmpty(value!);
-                    },
-                  );
-                }),
+                PasswordWidget(passwordController: _passwordController),
                 VerticalGap.xxl,
                 Consumer(builder: (context, ref, _) {
                   return Center(
@@ -114,10 +97,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Navigate to sign-up page
                       context.goNamed(RouteConstants.signUpScreen);
                     },
-                    child: Text(
+                    child: const Text(
                       'Don\'t have an account? Sign Up',
-                      style: context.appTextTheme.titleLarge!
-                          .copyWith(color: context.appColorScheme.secondary),
                     ),
                   ),
                 ),
@@ -127,12 +108,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-
-  ElevatedButton _button({
-    void Function()? onPressed,
-    required Widget child,
-  }) {
-    return ElevatedButton(onPressed: onPressed, child: child);
   }
 }

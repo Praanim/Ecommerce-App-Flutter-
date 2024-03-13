@@ -1,10 +1,14 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
-import 'package:eccomerce_frontend/core/shared/custom_app_bar.dart';
-import 'package:eccomerce_frontend/core/shared/shared.dart';
+import 'package:eccomerce_frontend/core/shared/validations.dart';
+import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/core/utils/gap.dart';
+import 'package:eccomerce_frontend/features/auth/data/models/user.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/widgets/auth_button.dart';
+import 'package:eccomerce_frontend/features/auth/presentation/widgets/auth_header_widget.dart';
+import 'package:eccomerce_frontend/features/auth/presentation/widgets/logo_image_widget.dart';
+import 'package:eccomerce_frontend/features/auth/presentation/widgets/password_widget.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late final TextEditingController _nameController;
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
-  late final TextEditingController _confirmPasswordController;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -32,78 +36,72 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _nameController = TextEditingController();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-    _confirmPasswordController = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: Text('Sign In'),
-      ),
+      backgroundColor: context.appColorScheme.onTertiaryContainer,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(AppConstants.pad16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomTextFormField(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const LogoImageWidget(),
+                VerticalGap.l,
+                const Align(
+                    alignment: Alignment.bottomLeft,
+                    child: AuthHeader(text: "Let's get started!")),
+                VerticalGap.l,
+                CustomTextFormField(
                   textEditingController: _nameController,
-                  labelText: 'Full Name'),
-              VerticalGap.l,
-              CustomTextFormField(
-                  textEditingController: _emailController, labelText: 'Email'),
-              VerticalGap.l,
-              CustomTextFormField(
-                  textEditingController: _passwordController,
-                  labelText: 'Password'),
-              VerticalGap.l,
-              CustomTextFormField(
-                  textEditingController: _confirmPasswordController,
-                  labelText: 'Confirm Password'),
-              VerticalGap.xxxl,
-              Consumer(builder: (context, ref, _) {
-                return AuthButton(
-                  text: 'Sign Up',
-                  onPressed: () async {
-                    if (_doubleCheckPassword(context)) {
+                  labelText: 'Full Name',
+                  validator: (value) {
+                    return Validations.isValidName(value!);
+                  },
+                ),
+                VerticalGap.l,
+                CustomTextFormField(
+                  textEditingController: _emailController,
+                  labelText: 'Email',
+                  validator: (value) {
+                    return Validations.validateEmail(value!);
+                  },
+                ),
+                VerticalGap.l,
+                PasswordWidget(passwordController: _passwordController),
+                VerticalGap.xxxl,
+                Consumer(builder: (context, ref, _) {
+                  return AuthButton(
+                    text: 'Sign Up',
+                    onPressed: () async {
                       //proceed with signUp
                       ref.read(authNotifierProvider.notifier).signUpUser(
-                          email: _emailController.text,
-                          password: _passwordController.text);
-                    }
+                            userModel: UserModel(
+                                fullName: _nameController.text.trim(),
+                                email: _emailController.text.trim(),
+                                password: _passwordController.text.trim()),
+                          );
+                    },
+                  );
+                }),
+                VerticalGap.l,
+                TextButton(
+                  onPressed: () {
+                    // Navigate to sign-in page
+                    context.goNamed(RouteConstants.loginScreen);
                   },
-                );
-              }),
-              VerticalGap.l,
-              TextButton(
-                onPressed: () {
-                  // Navigate to sign-in page
-                  context.goNamed(RouteConstants.loginScreen);
-                },
-                child: const Text('Already have an account? Sign In'),
-              ),
-            ],
+                  child: const Text('Already have an account? Sign In'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
-  }
-
-  bool _doubleCheckPassword(BuildContext context) {
-    String password = _passwordController.text;
-    String confirmPassword = _confirmPasswordController.text;
-
-    // Check if passwords match before proceeding
-    if (password != confirmPassword) {
-      // Display an error message or handle mismatched passwords
-
-      SharedClass.showMySnackBar(
-          context, "Passwords don't match with each other");
-      return false;
-    } else {
-      return true;
-    }
   }
 
   @override
@@ -111,7 +109,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    _confirmPasswordController.dispose();
     super.dispose();
   }
 }

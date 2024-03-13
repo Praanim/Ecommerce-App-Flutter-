@@ -1,3 +1,4 @@
+import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 ///[ToastType]
@@ -39,5 +40,21 @@ extension HelperExtension on BuildContext {
               ? Colors.green
               : Colors.red,
     ));
+  }
+
+  ///show modal bottom sheet
+  Future showCustomModalBottomSheet({required Widget child}) async {
+    return showModalBottomSheet(
+      context: this,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(AppConstants.primaryBorderRadius),
+          topRight: Radius.circular(AppConstants.primaryBorderRadius),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return child;
+      },
+    );
   }
 }

@@ -1,9 +1,9 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
-import 'package:eccomerce_frontend/core/shared/shared.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/state/auth_state.dart';
+import 'package:eccomerce_frontend/features/cart/presentation/providers/notifiers/cart_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -28,9 +28,16 @@ class AuthButton extends ConsumerWidget {
 
     ref.listen(authNotifierProvider, (previous, next) {
       if (next is AuthSuccess) {
-        context.goNamed(RouteConstants.homeScreen); //navigate to homeScreen
+        //gets cart for the respective user
+        ref
+            .read(cartNotifierProvider.notifier)
+            .getCartForTheUser(next.userModel.id!);
+
+        //navigate to homeScreen
+        context.goNamed(RouteConstants.homeScreen);
       } else if (next is AuthFailure) {
-        SharedClass.showMySnackBar(context, next.appException.message);
+        context.showSnackBar(
+            message: next.appException.message, toastType: ToastType.error);
       }
     });
 
@@ -40,13 +47,11 @@ class AuthButton extends ConsumerWidget {
     return SizedBox(
       width: double.infinity,
       child: CustomElevatedButton(
-        title: 'Login',
+        title: text,
         onPressed: onPressed,
         btnStyle: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: ValConstants.value8),
             backgroundColor: context.appColorScheme.primary),
-        titleStyle: context.appTextTheme.bodyLarge!
-            .copyWith(fontWeight: FontWeight.bold),
       ),
     );
   }

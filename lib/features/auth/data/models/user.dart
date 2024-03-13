@@ -37,4 +37,24 @@ class UserModel {
       'state': state,
     };
   }
+
+  UserModel copyWith({
+    String? id,
+    String? fullName,
+    String? email,
+    String? address,
+    String? city,
+    String? state,
+    String? password,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      fullName: fullName ?? this.fullName,
+      email: email ?? this.email,
+      address: address ?? this.address,
+      city: city ?? this.city,
+      state: state ?? this.state,
+      password: password ?? this.password,
+    );
+  }
 }

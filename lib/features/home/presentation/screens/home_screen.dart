@@ -90,8 +90,7 @@ class HomeScreen extends StatelessWidget {
                 } else if (state is ProductFailure) {
                   return Text(state.appException.identifier);
                 } else {
-                  //TODO:make it common widget
-                  return const CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
                 }
               }),
             )

@@ -27,10 +27,12 @@ class BottomNavigatorWidget extends ConsumerWidget {
     BottomNavigationBarItem(
       icon: Consumer(builder: (context, ref, child) {
         final itemCount = ref.watch(cartItemsCountProvider);
-        return Badge(
-            backgroundColor: context.appColorScheme.primary,
-            label: Text(itemCount.toString()),
-            child: const Icon(IconConstants.cartIcon));
+        return itemCount == 0
+            ? const Icon(IconConstants.cartIcon)
+            : Badge(
+                backgroundColor: context.appColorScheme.primary,
+                label: Text(itemCount.toString()),
+                child: const Icon(IconConstants.cartIcon));
       }),
       label: 'Cart',
     ),

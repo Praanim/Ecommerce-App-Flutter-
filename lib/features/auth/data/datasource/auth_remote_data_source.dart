@@ -10,13 +10,17 @@ abstract class AuthDataSource {
   Future<Either<AppException, void>> sigIn({required UserModel user});
 
   ///Sign up user
-  Future<Either<AppException, void>> signUp({required UserModel user});
-
-  ///user auth state
-  Stream<User?> authStateChanges();
+  Future<Either<AppException, UserCredential>> signUp(
+      {required UserModel user});
 
   ///Get user by email
   Future<Either<AppException, UserModel>> getUserByEmail(String email);
+
+  ///create user in db
+  Future<Either<AppException, UserModel>> createUserInDb(UserModel userModel);
+
+  ///sign out user
+  Future<Either<AppException, void>> signOutUser();
 }
 
 class AuthRemoteDataSource extends AuthDataSource {
@@ -42,17 +46,12 @@ class AuthRemoteDataSource extends AuthDataSource {
   }
 
   @override
-  Stream<User?> authStateChanges() {
-    // TODO: implement authStateChanges
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<AppException, void>> signUp({required UserModel user}) async {
+  Future<Either<AppException, UserCredential>> signUp(
+      {required UserModel user}) async {
     try {
-      await firebaseAuth.createUserWithEmailAndPassword(
+      final userCredential = await firebaseAuth.createUserWithEmailAndPassword(
           email: user.email!, password: user.password!);
-      return const Right(null);
+      return Right(userCredential);
     } on FirebaseAuthException catch (e) {
       return Left(SharedClass.firebaseErrorInstance(e: e));
     } catch (e) {
@@ -72,6 +71,37 @@ class AuthRemoteDataSource extends AuthDataSource {
         final data = appResponse.data['message'];
         return Right(UserModel.fromJson(data));
       });
+    } catch (e) {
+      return Left(SharedClass.unknownErrorInstance(
+          identifier: '${e.toString()}\nLoginUserRemoteDataSource.loginUser'));
+    }
+  }
+
+  @override
+  Future<Either<AppException, UserModel>> createUserInDb(
+      UserModel userModel) async {
+    try {
+      final eitherResponse =
+          await networkService.post('/user', data: userModel.toJson());
+      return eitherResponse.fold((appException) {
+        return Left(appException);
+      }, (appResponse) {
+        final data = appResponse.data['message'];
+        return Right(UserModel.fromJson(data));
+      });
+    } catch (e) {
+      return Left(SharedClass.unknownErrorInstance(
+          identifier: '${e.toString()}\nLoginUserRemoteDataSource.createUser'));
+    }
+  }
+
+  @override
+  Future<Either<AppException, void>> signOutUser() async {
+    try {
+      await firebaseAuth.signOut();
+      return const Right(null);
+    } on FirebaseAuthException catch (e) {
+      return Left(SharedClass.firebaseErrorInstance(e: e));
     } catch (e) {
       return Left(SharedClass.unknownErrorInstance(
           identifier: '${e.toString()}\nLoginUserRemoteDataSource.loginUser'));

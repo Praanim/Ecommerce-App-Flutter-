@@ -6,6 +6,7 @@ import 'package:eccomerce_frontend/features/auth/domain/providers/auth_provider.
 import 'package:eccomerce_frontend/features/auth/domain/repositories/auth_repository.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/state/auth_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AuthNotifier extends Notifier<AuthState> {
@@ -60,8 +61,10 @@ class AuthNotifier extends Notifier<AuthState> {
         }, (userModel) {
           //initializing the userModel class after succefull login in firebase
           //also the user is found in the db.
-          ref.read(userDataProvider.notifier).state = userModel;
-          state = AuthSuccess();
+          ref.read(userDataProvider.notifier).state = userModel as UserModel;
+          state = AuthSuccess(
+            userModel: userModel,
+          );
         });
       });
     } catch (e) {
@@ -72,19 +75,32 @@ class AuthNotifier extends Notifier<AuthState> {
   }
 
   Future<void> signUpUser({
-    required String email,
-    required String password,
+    required UserModel userModel,
   }) async {
     state = AuthLoading();
 
-    final eitherRes = await authRepository.signUpUser(
-        user: UserModel(email: email, password: password));
-
-    state = eitherRes.fold(
-      (appException) => AuthFailure(appException: appException),
-      (_) {
-        return AuthSuccess();
+    final eitherRes = await authRepository.signUpUser(user: userModel);
+    eitherRes.fold(
+      (appException) {
+        return state = AuthFailure(appException: appException);
+      },
+      (UserCredential userCredential) async {
+        final eitherRes = await authRepository.createUserInDb(
+            userModel: userModel.copyWith(id: userCredential.user!.uid));
+        return state = eitherRes.fold(
+            (appException) => AuthFailure(appException: appException),
+            (userModel) => AuthSuccess(userModel: userModel));
       },
     );
+  }
+
+  ///Signs out the current user
+  void signOut() async {
+    state = AuthLoading();
+    final eitherResponse = await authRepository.signOutUser();
+
+    state = eitherResponse.fold(
+        (appException) => AuthFailure(appException: appException),
+        (_) => AuthSignOut());
   }
 }

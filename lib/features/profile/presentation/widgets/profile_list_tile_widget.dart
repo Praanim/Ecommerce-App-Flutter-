@@ -10,7 +10,7 @@ class ProfileListTileWidget extends StatelessWidget {
       super.key});
 
   final Widget leadingIcon;
-  final Function() onTap;
+  final void Function() onTap;
   final String text;
 
   @override
