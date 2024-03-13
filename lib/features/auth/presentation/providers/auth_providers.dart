@@ -24,3 +24,7 @@ final getUserByEmailFutureProvider =
 
 ///This provider is for getting logged in user Details throughout the app.
 final userDataProvider = StateProvider<UserModel?>((ref) => null);
+
+///password visibilityProvider
+final passwordVisibilityProvider =
+    StateProvider.autoDispose<bool>((ref) => false);

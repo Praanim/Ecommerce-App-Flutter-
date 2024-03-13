@@ -1,9 +1,20 @@
+import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:eccomerce_frontend/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ///class defining the theme of the project
 class AppTheme {
+  //commom inputBorder used in light mode
+  static InputBorder _commonOutLineInputBorder({bool isError = false}) {
+    return OutlineInputBorder(
+      borderSide: BorderSide(
+        color: isError ? LightColor.errorColor : LightColor.primaryColor,
+      ),
+      borderRadius: BorderRadius.circular(AppConstants.primaryBorderRadius),
+    );
+  }
+
   ///LightTheme
   static final ThemeData lightThemeData = ThemeData(
       appBarTheme: const AppBarTheme(
@@ -13,6 +24,19 @@ class AppTheme {
           iconColor: LightColor.secondaryColor,
           tileColor: LightColor.tertiaryColor),
       fontFamily: GoogleFonts.poppins().fontFamily,
+
+      //input decoration
+      inputDecorationTheme: InputDecorationTheme(
+          contentPadding: const EdgeInsets.symmetric(
+              horizontal: AppConstants.pad8, vertical: AppConstants.pad12),
+          labelStyle: const TextStyle(
+              color: LightColor.secondaryColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold),
+          focusedBorder: _commonOutLineInputBorder(),
+          enabledBorder: _commonOutLineInputBorder(),
+          errorBorder: _commonOutLineInputBorder(isError: true),
+          focusedErrorBorder: _commonOutLineInputBorder(isError: true)),
       // primaryColor: LightColor.primaryColor,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           // backgroundColor: LightColor.primaryColor,
@@ -90,5 +114,6 @@ class AppTheme {
           primary: LightColor.primaryColor,
           secondary: LightColor.secondaryColor,
           tertiary: LightColor.tertiaryColor,
+          onTertiary: LightColor.onTertiaryColor,
           onPrimary: LightColor.onPrimary));
 }

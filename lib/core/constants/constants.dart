@@ -90,6 +90,7 @@ class ImageConstants {
   static const String carousel1 = 'assets/images/carousel1.jpeg';
   static const String carousel2 = 'assets/images/carousel2.jpeg';
   static const String carousel3 = 'assets/images/carousel3.jpeg';
+  static const String appLogo = 'assets/images/nattt_bazar_logo.png';
 
   ///random network image Url
   static const String randomNetworkImageUrl =
