@@ -1,4 +1,4 @@
-import 'package:eccomerce_frontend/core/services/remote/providers/dio_network_service_provider.dart';
+import 'package:eccomerce_frontend/core/services/providers/dio_network_service_provider.dart';
 import 'package:eccomerce_frontend/features/product/data/datasource/product_data_source.dart';
 import 'package:eccomerce_frontend/features/product/data/repositories/product_repository_impl.dart';
 import 'package:eccomerce_frontend/features/product/domain/repositories/product_repository.dart';
