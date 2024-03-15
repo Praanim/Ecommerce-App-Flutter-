@@ -28,10 +28,10 @@ class IconConstants {
   static const IconData homeIcon = Icons.home;
 
   ///favourite icon(bottom navigation bar)
-  static const IconData favouriteIcon = Icons.favorite;
+  static const IconData ordersIcon = Icons.shop_2;
 
   ///cart icon(bottom navigation bar)
-  static const IconData cartIcon = Icons.shop;
+  static const IconData cartIcon = Icons.shopping_cart;
 
   ///profike icon(bottom navigation bar)
   static const IconData profileIcon = Icons.person;

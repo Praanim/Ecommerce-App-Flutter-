@@ -21,8 +21,8 @@ class BottomNavigatorWidget extends ConsumerWidget {
       label: 'Home',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(IconConstants.favouriteIcon),
-      label: 'Favourite',
+      icon: Icon(IconConstants.ordersIcon),
+      label: 'Orders',
     ),
     BottomNavigationBarItem(
       icon: Consumer(builder: (context, ref, child) {
