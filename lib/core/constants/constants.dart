@@ -33,8 +33,15 @@ class IconConstants {
   ///cart icon(bottom navigation bar)
   static const IconData cartIcon = Icons.shopping_cart;
 
-  ///profike icon(bottom navigation bar)
+  ///profile icon(bottom navigation bar)
   static const IconData profileIcon = Icons.person;
+
+  //profile page tab icons
+  static const IconData personIcon = Icons.person_2;
+  static const IconData helpIcon = Icons.chat_sharp;
+  static const IconData notificationIcon = Icons.notifications_active;
+  static const IconData downloadIcon = Icons.download;
+  static const IconData logOutIcon = Icons.logout;
 
   ///provides size --> 20
   static const double iconPrimarySize = 20;
@@ -73,17 +80,6 @@ class ValConstants {
 
   /// Provides value of 24.0
   static const double value24 = 24.0;
-}
-
-class TextConstants {
-  static const loremIpsum = '''
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-
-Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. 
-
-Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis.
-
-''';
 }
 
 class ImageConstants {

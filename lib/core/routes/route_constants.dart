@@ -22,4 +22,10 @@ class RouteConstants {
 
   ///Bottom Navigation routes (Profile)
   static const profileScreen = 'Profile';
+
+  ///profile child route (Address page)
+  static const userAddressScreen = 'UserAddress';
+
+  ///address page child route(profile/address/addressDetails)
+  static const addressDetailsScreen = "UserAddressDetails";
 }

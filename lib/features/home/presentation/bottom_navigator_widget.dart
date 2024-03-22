@@ -1,16 +1,18 @@
 import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_providers.dart';
-import 'package:eccomerce_frontend/features/home/presentation/providers/bottom_navigation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class BottomNavigatorWidget extends ConsumerWidget {
+  final StatefulNavigationShell navigationShell;
+
   //Bottom navigation screen to be displayed.
-  final Widget child;
-  BottomNavigatorWidget({super.key, required this.child});
+  BottomNavigatorWidget(
+    this.navigationShell, {
+    super.key,
+  });
 
   //Bottom navigation bar items.
   final List<BottomNavigationBarItem> _items = [
@@ -45,29 +47,42 @@ class BottomNavigatorWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: child,
+      body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
-        currentIndex: ref.watch(currentPageNotifierProvider),
+        currentIndex: navigationShell.currentIndex,
         onTap: (value) {
-          ref.read(currentPageNotifierProvider.notifier).setIndex(value);
-          _navigateToScreen(value, context);
+          _onTap(context, value);
         },
         items: _items,
       ),
     );
   }
 
-  void _navigateToScreen(int value, BuildContext context) {
-    switch (value) {
-      case 0:
-        return context.goNamed(RouteConstants.homeScreen);
-      case 1:
-        return context.goNamed(RouteConstants.favouriteScreen);
-      case 2:
-        return context.goNamed(RouteConstants.cartScreen);
-      case 3:
-        return context.goNamed(RouteConstants.profileScreen);
-    }
+  void _onTap(BuildContext context, int index) {
+    // When navigating to a new branch, it's recommended to use the goBranch
+    // method, as doing so makes sure the last navigation state of the
+    // Navigator for the branch is restored.
+    navigationShell.goBranch(
+      index,
+      // A common pattern when using bottom navigation bars is to support
+      // navigating to the initial location when tapping the item that is
+      // already active. This example demonstrates how to support this behavior,
+      // using the initialLocation parameter of goBranch.
+      initialLocation: index == navigationShell.currentIndex,
+    );
   }
+
+  // void _navigateToScreen(int value, BuildContext context) {
+  //   switch (value) {
+  //     case 0:
+  //       return context.goNamed(RouteConstants.homeScreen);
+  //     case 1:
+  //       return context.goNamed(RouteConstants.favouriteScreen);
+  //     case 2:
+  //       return context.goNamed(RouteConstants.cartScreen);
+  //     case 3:
+  //       return context.goNamed(RouteConstants.profileScreen);
+  //   }
+  // }
 }

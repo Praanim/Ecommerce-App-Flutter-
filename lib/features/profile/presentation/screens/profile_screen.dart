@@ -1,3 +1,5 @@
+import 'package:eccomerce_frontend/core/constants/constants.dart';
+import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/core/shared/custom_app_bar.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
 import 'package:eccomerce_frontend/features/profile/data/models/profile_list_tile_item.dart';
@@ -6,6 +8,7 @@ import 'package:eccomerce_frontend/features/profile/presentation/widgets/profile
 import 'package:eccomerce_frontend/features/profile/presentation/widgets/profile_list_tile_widget.dart';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -18,30 +21,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
   List<ProfileListTileItem> profileItemsList(BuildContext context) => [
         ProfileListTileItem(
             title: 'Account Details',
-            leadingIcon: const Icon(Icons.person_2),
+            leadingIcon: const Icon(IconConstants.personIcon),
             onTap: () {}),
         ProfileListTileItem(
             title: 'Delivery Address',
-            leadingIcon: const Icon(Icons.home),
-            onTap: () {}),
+            leadingIcon: const Icon(IconConstants.homeIcon),
+            onTap: () {
+              context.goNamed(RouteConstants.userAddressScreen);
+            }),
         ProfileListTileItem(
           title: 'Help',
-          leadingIcon: const Icon(Icons.chat_sharp),
+          leadingIcon: const Icon(IconConstants.helpIcon),
           onTap: () {},
         ),
         ProfileListTileItem(
           title: 'Notification Settings',
-          leadingIcon: const Icon(Icons.notifications_active),
+          leadingIcon: const Icon(IconConstants.notificationIcon),
           onTap: () {},
         ),
         ProfileListTileItem(
           title: 'App Update',
-          leadingIcon: const Icon(Icons.download),
+          leadingIcon: const Icon(IconConstants.downloadIcon),
           onTap: () {},
         ),
         ProfileListTileItem(
           title: 'Logout',
-          leadingIcon: const Icon(Icons.signpost),
+          leadingIcon: const Icon(IconConstants.logOutIcon),
           onTap: () async {
             context.showCustomModalBottomSheet(
                 child: const LogOutBottomSheetWidget());

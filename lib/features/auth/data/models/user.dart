@@ -2,28 +2,23 @@ class UserModel {
   final String? id;
   final String? fullName;
   final String? email;
-  final String? address;
-  final String? city;
-  final String? state;
+  final AddressModel? address;
   final String? password;
 
-  const UserModel(
-      {this.id,
-      this.fullName,
-      this.email,
-      this.address,
-      this.city,
-      this.state,
-      this.password});
+  const UserModel({
+    this.id,
+    this.fullName,
+    this.email,
+    this.address,
+    this.password,
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'],
       fullName: map['fullName'],
       email: map['email'],
-      address: map['address'],
-      city: map['city'],
-      state: map['state'],
+      address: AddressModel.fromJson(map),
     );
   }
 
@@ -32,9 +27,9 @@ class UserModel {
       'id': id,
       'fullName': fullName,
       'email': email,
-      'address': address,
-      'city': city,
-      'state': state,
+      'address': address?.address,
+      'city': address?.city,
+      'state': address?.state,
     };
   }
 
@@ -42,9 +37,7 @@ class UserModel {
     String? id,
     String? fullName,
     String? email,
-    String? address,
-    String? city,
-    String? state,
+    AddressModel? address,
     String? password,
   }) {
     return UserModel(
@@ -52,9 +45,39 @@ class UserModel {
       fullName: fullName ?? this.fullName,
       email: email ?? this.email,
       address: address ?? this.address,
+      password: password ?? this.password,
+    );
+  }
+}
+
+class AddressModel {
+  final String? address;
+  final String? city;
+  final String? state;
+
+  const AddressModel({
+    this.address,
+    this.city,
+    this.state,
+  });
+
+  factory AddressModel.fromJson(Map<String, dynamic> map) {
+    return AddressModel(
+      address: map['address'],
+      city: map['city'],
+      state: map['state'],
+    );
+  }
+
+  AddressModel copyWith({
+    String? address,
+    String? city,
+    String? state,
+  }) {
+    return AddressModel(
+      address: address ?? this.address,
       city: city ?? this.city,
       state: state ?? this.state,
-      password: password ?? this.password,
     );
   }
 }

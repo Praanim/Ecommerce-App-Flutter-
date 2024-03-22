@@ -11,6 +11,8 @@ import 'package:eccomerce_frontend/features/home/presentation/screens/home_scree
 import 'package:eccomerce_frontend/features/product/presentation/screens/product_details_screen.dart';
 import 'package:eccomerce_frontend/features/product/presentation/screens/product_screen.dart';
 import 'package:eccomerce_frontend/features/profile/presentation/screens/profile_screen.dart';
+import 'package:eccomerce_frontend/features/profile/presentation/screens/user_address_details_screen.dart';
+import 'package:eccomerce_frontend/features/profile/presentation/screens/user_address_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -65,50 +67,69 @@ final GoRouter router = GoRouter(
       ),
 
       //bottom navigation bar widget
-      ShellRoute(
-          navigatorKey: shellNavigator,
-          builder: (context, state, child) => BottomNavigatorWidget(
-                child: child,
+      StatefulShellRoute.indexedStack(
+          builder: (context, state, navigationShell) => BottomNavigatorWidget(
+                navigationShell,
               ),
-          routes: [
-            GoRoute(
-                path: '/home',
-                name: RouteConstants.homeScreen,
-                builder: (context, state) => const HomeScreen(),
-                routes: [
-                  GoRoute(
-                      path: 'product',
-                      name: RouteConstants.productScreen,
-                      builder: (context, state) => const ProductScreen(),
-                      routes: [
-                        GoRoute(
-                          path: 'product-details',
-                          name: RouteConstants.productDetailsScreen,
-                          builder: (context, state) {
-                            final map = state.extra as Map<String, dynamic>;
-                            final Product product = map['product'];
+          branches: [
+            StatefulShellBranch(routes: [
+              GoRoute(
+                  path: '/home',
+                  name: RouteConstants.homeScreen,
+                  builder: (context, state) => const HomeScreen(),
+                  routes: [
+                    GoRoute(
+                        path: 'product',
+                        name: RouteConstants.productScreen,
+                        builder: (context, state) => const ProductScreen(),
+                        routes: [
+                          GoRoute(
+                            path: 'product-details',
+                            name: RouteConstants.productDetailsScreen,
+                            builder: (context, state) {
+                              final map = state.extra as Map<String, dynamic>;
+                              final Product product = map['product'];
 
-                            return ProductDetailsScreen(
-                              product: product,
-                            );
-                          },
-                        )
-                      ])
-                ]),
-            GoRoute(
-              path: '/favourite',
-              name: RouteConstants.favouriteScreen,
-              builder: (context, state) => const FavouriteScreen(),
-            ),
-            GoRoute(
-              path: '/cart',
-              name: RouteConstants.cartScreen,
-              builder: (context, state) => const CartScreen(),
-            ),
-            GoRoute(
-              path: '/profile',
-              name: RouteConstants.profileScreen,
-              builder: (context, state) => ProfileScreen(),
-            ),
+                              return ProductDetailsScreen(
+                                product: product,
+                              );
+                            },
+                          )
+                        ])
+                  ]),
+            ]),
+            StatefulShellBranch(routes: [
+              GoRoute(
+                path: '/favourite',
+                name: RouteConstants.favouriteScreen,
+                builder: (context, state) => const FavouriteScreen(),
+              ),
+            ]),
+            StatefulShellBranch(routes: [
+              GoRoute(
+                path: '/cart',
+                name: RouteConstants.cartScreen,
+                builder: (context, state) => const CartScreen(),
+              ),
+            ]),
+            StatefulShellBranch(routes: [
+              GoRoute(
+                  path: '/profile',
+                  name: RouteConstants.profileScreen,
+                  builder: (context, state) => const ProfileScreen(),
+                  routes: [
+                    GoRoute(
+                        path: 'user-address',
+                        name: RouteConstants.userAddressScreen,
+                        builder: (context, state) => const UserAddressScreen(),
+                        routes: [
+                          GoRoute(
+                              path: 'address-details',
+                              name: RouteConstants.addressDetailsScreen,
+                              builder: (context, state) =>
+                                  const UserAddressDetailsScreen())
+                        ])
+                  ]),
+            ])
           ])
     ]);
