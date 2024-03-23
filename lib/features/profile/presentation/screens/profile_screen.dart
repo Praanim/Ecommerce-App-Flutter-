@@ -22,7 +22,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ProfileListTileItem(
             title: 'Account Details',
             leadingIcon: const Icon(IconConstants.personIcon),
-            onTap: () {}),
+            onTap: () {
+              context.goNamed(RouteConstants.accountDetailsScreen);
+            }),
         ProfileListTileItem(
             title: 'Delivery Address',
             leadingIcon: const Icon(IconConstants.homeIcon),

@@ -15,7 +15,7 @@ class RouteConstants {
   static const productDetailsScreen = 'ProductDetails';
 
   ///Bottom Navigation routes (Favourite)
-  static const favouriteScreen = 'Favourite';
+  static const orderScreen = 'Favourite';
 
   ///Bottom Navigation routes (Cart)
   static const cartScreen = 'Cart';
@@ -25,6 +25,9 @@ class RouteConstants {
 
   ///profile child route (Address page)
   static const userAddressScreen = 'UserAddress';
+
+  ///profile child route(Account Details page)
+  static const accountDetailsScreen = "AccountDetails";
 
   ///address page child route(profile/address/addressDetails)
   static const addressDetailsScreen = "UserAddressDetails";

@@ -11,6 +11,7 @@ import 'package:eccomerce_frontend/features/home/presentation/screens/home_scree
 import 'package:eccomerce_frontend/features/product/presentation/screens/product_details_screen.dart';
 import 'package:eccomerce_frontend/features/product/presentation/screens/product_screen.dart';
 import 'package:eccomerce_frontend/features/profile/presentation/screens/profile_screen.dart';
+import 'package:eccomerce_frontend/features/profile/presentation/screens/user_account_details_screen.dart';
 import 'package:eccomerce_frontend/features/profile/presentation/screens/user_address_details_screen.dart';
 import 'package:eccomerce_frontend/features/profile/presentation/screens/user_address_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -100,8 +101,8 @@ final GoRouter router = GoRouter(
             ]),
             StatefulShellBranch(routes: [
               GoRoute(
-                path: '/favourite',
-                name: RouteConstants.favouriteScreen,
+                path: '/order',
+                name: RouteConstants.orderScreen,
                 builder: (context, state) => const FavouriteScreen(),
               ),
             ]),
@@ -118,6 +119,11 @@ final GoRouter router = GoRouter(
                   name: RouteConstants.profileScreen,
                   builder: (context, state) => const ProfileScreen(),
                   routes: [
+                    GoRoute(
+                      path: 'account-details',
+                      name: RouteConstants.accountDetailsScreen,
+                      builder: (context, state) => const UserAccountDetails(),
+                    ),
                     GoRoute(
                         path: 'user-address',
                         name: RouteConstants.userAddressScreen,
