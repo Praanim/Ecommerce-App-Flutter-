@@ -50,7 +50,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const LogoImageWidget(),
+                const LogoImageWidget(
+                  assetUrl: ImageConstants.appLogo,
+                ),
                 VerticalGap.l,
                 const Align(
                     alignment: Alignment.bottomLeft,

@@ -1,3 +1,4 @@
+import 'package:eccomerce_frontend/core/constants/constants.dart';
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
 import 'package:eccomerce_frontend/core/shared/validations.dart';
 import 'package:eccomerce_frontend/core/utils/context_extension.dart';
@@ -62,7 +63,9 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const LogoImageWidget(),
+                const LogoImageWidget(
+                  assetUrl: ImageConstants.appLogo,
+                ),
                 VerticalGap.l,
                 const AuthHeader(
                   text: 'Welcome Back!',

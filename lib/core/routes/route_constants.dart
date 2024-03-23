@@ -31,4 +31,7 @@ class RouteConstants {
 
   ///address page child route(profile/address/addressDetails)
   static const addressDetailsScreen = "UserAddressDetails";
+
+  ///maintainence route
+  static const maintainenceScreen = "MaintainenceScreen";
 }

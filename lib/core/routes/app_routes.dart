@@ -1,4 +1,5 @@
 import 'package:eccomerce_frontend/core/routes/route_constants.dart';
+import 'package:eccomerce_frontend/core/widgets/maintainence_screen.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/screens/login_screen.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/screens/sign_up_screen.dart';
@@ -134,7 +135,12 @@ final GoRouter router = GoRouter(
                               name: RouteConstants.addressDetailsScreen,
                               builder: (context, state) =>
                                   const UserAddressDetailsScreen())
-                        ])
+                        ]),
+                    GoRoute(
+                      path: 'maintainence-route',
+                      name: RouteConstants.maintainenceScreen,
+                      builder: (context, state) => const MaintainenceScreen(),
+                    )
                   ]),
             ])
           ])

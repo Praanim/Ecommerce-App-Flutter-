@@ -34,17 +34,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ProfileListTileItem(
           title: 'Help',
           leadingIcon: const Icon(IconConstants.helpIcon),
-          onTap: () {},
+          onTap: () {
+            _navigateToMaintainenceScreen(context);
+          },
         ),
         ProfileListTileItem(
           title: 'Notification Settings',
           leadingIcon: const Icon(IconConstants.notificationIcon),
-          onTap: () {},
+          onTap: () {
+            _navigateToMaintainenceScreen(context);
+          },
         ),
         ProfileListTileItem(
           title: 'App Update',
           leadingIcon: const Icon(IconConstants.downloadIcon),
-          onTap: () {},
+          onTap: () {
+            _navigateToMaintainenceScreen(context);
+          },
         ),
         ProfileListTileItem(
           title: 'Logout',
@@ -55,6 +61,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           },
         ),
       ];
+
+  void _navigateToMaintainenceScreen(BuildContext context) {
+    context.goNamed(RouteConstants.maintainenceScreen);
+  }
 
   @override
   Widget build(BuildContext context) {
