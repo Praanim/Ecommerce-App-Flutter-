@@ -70,6 +70,7 @@ class _UserAddressContainer extends ConsumerWidget {
       padding: const EdgeInsets.only(top: AppConstants.pad16),
       child: Column(
         mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

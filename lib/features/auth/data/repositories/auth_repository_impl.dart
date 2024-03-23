@@ -37,4 +37,10 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<Either<AppException, void>> signOutUser() {
     return authDataSource.signOutUser();
   }
+
+  @override
+  Future<Either<AppException, UserModel>> updateUser(
+      {required UserModel userModel}) {
+    return authDataSource.updateUser(userModel);
+  }
 }

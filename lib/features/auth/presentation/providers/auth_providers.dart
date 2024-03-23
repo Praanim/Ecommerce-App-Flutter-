@@ -1,7 +1,8 @@
 import 'package:eccomerce_frontend/features/auth/data/models/user.dart';
 import 'package:eccomerce_frontend/features/auth/domain/providers/auth_provider.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/state/auth_notifier.dart';
+import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_notifier.dart';
 import 'package:eccomerce_frontend/features/auth/presentation/providers/state/auth_state.dart';
+import 'package:eccomerce_frontend/features/auth/presentation/providers/user_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///auth notifier provider
@@ -17,13 +18,14 @@ final getUserByEmailFutureProvider =
 
   return eitherResponse.fold((appException) => null, (userModel) {
     //initializing the user Data provider.
-    ref.read(userDataProvider.notifier).state = userModel;
+    ref.read(userDataProvider.notifier).setUserDetails(userModel);
     return userModel;
   });
 });
 
 ///This provider is for getting logged in user Details throughout the app.
-final userDataProvider = StateProvider<UserModel?>((ref) => null);
+final userDataProvider = StateNotifierProvider<UserNotifier, UserModel?>(
+    (ref) => UserNotifier(ref.watch(authRepositoryProvider)));
 
 ///password visibilityProvider
 final passwordVisibilityProvider =

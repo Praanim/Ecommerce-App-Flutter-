@@ -21,6 +21,9 @@ abstract class AuthDataSource {
 
   ///sign out user
   Future<Either<AppException, void>> signOutUser();
+
+  ///update user
+  Future<Either<AppException, UserModel>> updateUser(UserModel userModel);
 }
 
 class AuthRemoteDataSource extends AuthDataSource {
@@ -105,6 +108,24 @@ class AuthRemoteDataSource extends AuthDataSource {
     } catch (e) {
       return Left(SharedClass.unknownErrorInstance(
           identifier: '${e.toString()}\nLoginUserRemoteDataSource.loginUser'));
+    }
+  }
+
+  @override
+  Future<Either<AppException, UserModel>> updateUser(
+      UserModel userModel) async {
+    try {
+      final eitherResponse =
+          await networkService.put('/user', data: userModel.toJson());
+      return eitherResponse.fold((appException) {
+        return Left(appException);
+      }, (appResponse) {
+        final data = appResponse.data['message'];
+        return Right(UserModel.fromJson(data));
+      });
+    } catch (e) {
+      return Left(SharedClass.unknownErrorInstance(
+          identifier: '${e.toString()}\nLoginUserRemoteDataSource.updateUser'));
     }
   }
 }

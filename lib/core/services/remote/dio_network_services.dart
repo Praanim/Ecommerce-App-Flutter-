@@ -55,4 +55,17 @@ class DioNetworkService extends NetworkService with ExceptionHandlerMixin {
 
     return eitherRes;
   }
+
+  @override
+  Future<Either<AppException, AppResponse>> put(String endpoint,
+      {Map<String, dynamic>? data}) async {
+    final eitherRes = await handleException(
+        () => dio.put(
+              endpoint,
+              data: data,
+            ),
+        endPoint: endpoint);
+
+    return eitherRes;
+  }
 }

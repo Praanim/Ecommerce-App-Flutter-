@@ -61,7 +61,9 @@ class AuthNotifier extends Notifier<AuthState> {
         }, (userModel) {
           //initializing the userModel class after succefull login in firebase
           //also the user is found in the db.
-          ref.read(userDataProvider.notifier).state = userModel as UserModel;
+          ref
+              .read(userDataProvider.notifier)
+              .setUserDetails(userModel as UserModel);
           state = AuthSuccess(
             userModel: userModel,
           );

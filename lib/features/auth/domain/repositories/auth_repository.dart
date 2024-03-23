@@ -17,4 +17,7 @@ abstract class AuthRepository {
       {required UserModel userModel});
 
   Future<Either<AppException, void>> signOutUser();
+
+  Future<Either<AppException, UserModel>> updateUser(
+      {required UserModel userModel});
 }
