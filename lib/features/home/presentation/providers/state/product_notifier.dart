@@ -1,7 +1,7 @@
-import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
-import 'package:eccomerce_frontend/features/product/domain/models/category_model.dart';
-import 'package:eccomerce_frontend/features/product/domain/repositories/product_repository.dart';
-import 'package:eccomerce_frontend/features/home/presentation/providers/state/product_state.dart';
+import 'package:nattt_bazaar/features/home/domain/models/product_model.dart';
+import 'package:nattt_bazaar/features/product/domain/models/category_model.dart';
+import 'package:nattt_bazaar/features/product/domain/repositories/product_repository.dart';
+import 'package:nattt_bazaar/features/home/presentation/providers/state/product_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProductNotifier extends StateNotifier<ProductState> {

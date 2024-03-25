@@ -1,8 +1,8 @@
-import 'package:eccomerce_frontend/features/auth/data/models/user.dart';
-import 'package:eccomerce_frontend/features/auth/domain/providers/auth_provider.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_notifier.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/state/auth_state.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/user_notifier.dart';
+import 'package:nattt_bazaar/features/auth/data/models/user.dart';
+import 'package:nattt_bazaar/features/auth/domain/providers/auth_provider.dart';
+import 'package:nattt_bazaar/features/auth/presentation/providers/auth_notifier.dart';
+import 'package:nattt_bazaar/features/auth/presentation/providers/state/auth_state.dart';
+import 'package:nattt_bazaar/features/auth/presentation/providers/user_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///auth notifier provider

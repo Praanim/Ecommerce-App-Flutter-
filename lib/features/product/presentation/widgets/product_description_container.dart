@@ -1,11 +1,11 @@
-import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/constants/text_constants.dart';
-import 'package:eccomerce_frontend/core/utils/context_extension.dart';
-import 'package:eccomerce_frontend/core/utils/gap.dart';
-import 'package:eccomerce_frontend/core/widgets/custom_card.dart';
-import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
-import 'package:eccomerce_frontend/features/product/presentation/providers/product_details_show_more_provider.dart';
-import 'package:eccomerce_frontend/features/product/presentation/widgets/price_tag_widgets.dart';
+import 'package:nattt_bazaar/core/constants/constants.dart';
+import 'package:nattt_bazaar/core/constants/text_constants.dart';
+import 'package:nattt_bazaar/core/utils/context_extension.dart';
+import 'package:nattt_bazaar/core/utils/gap.dart';
+import 'package:nattt_bazaar/core/widgets/custom_card.dart';
+import 'package:nattt_bazaar/features/home/domain/models/product_model.dart';
+import 'package:nattt_bazaar/features/product/presentation/providers/product_details_show_more_provider.dart';
+import 'package:nattt_bazaar/features/product/presentation/widgets/price_tag_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

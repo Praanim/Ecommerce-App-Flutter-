@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:eccomerce_frontend/core/exceptions/http_exceptions.dart';
-import 'package:eccomerce_frontend/features/product/domain/models/category_model.dart';
+import 'package:nattt_bazaar/core/exceptions/http_exceptions.dart';
+import 'package:nattt_bazaar/features/product/domain/models/category_model.dart';
 
 import '../../../home/domain/models/product_model.dart';
 

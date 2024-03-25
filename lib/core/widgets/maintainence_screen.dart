@@ -1,6 +1,6 @@
-import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/shared/custom_app_bar.dart';
-import 'package:eccomerce_frontend/core/widgets/no_content_widget.dart';
+import 'package:nattt_bazaar/core/constants/constants.dart';
+import 'package:nattt_bazaar/core/shared/custom_app_bar.dart';
+import 'package:nattt_bazaar/core/widgets/no_content_widget.dart';
 import 'package:flutter/material.dart';
 
 class MaintainenceScreen extends StatelessWidget {

@@ -1,5 +1,5 @@
-import 'package:eccomerce_frontend/core/exceptions/http_exceptions.dart';
-import 'package:eccomerce_frontend/features/auth/data/models/user.dart';
+import 'package:nattt_bazaar/core/exceptions/http_exceptions.dart';
+import 'package:nattt_bazaar/features/auth/data/models/user.dart';
 
 abstract class AuthState {}
 

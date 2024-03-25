@@ -3,8 +3,8 @@ import 'dart:developer' as developer;
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:eccomerce_frontend/core/exceptions/http_exceptions.dart';
-import 'package:eccomerce_frontend/core/shared/app_response.dart';
+import 'package:nattt_bazaar/core/exceptions/http_exceptions.dart';
+import 'package:nattt_bazaar/core/shared/app_response.dart';
 import '../services/remote/remote.dart';
 
 mixin ExceptionHandlerMixin on NetworkService {

@@ -1,5 +1,5 @@
-import 'package:eccomerce_frontend/features/auth/data/models/user.dart';
-import 'package:eccomerce_frontend/features/auth/domain/repositories/auth_repository.dart';
+import 'package:nattt_bazaar/features/auth/data/models/user.dart';
+import 'package:nattt_bazaar/features/auth/domain/repositories/auth_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserNotifier extends StateNotifier<UserModel?> {

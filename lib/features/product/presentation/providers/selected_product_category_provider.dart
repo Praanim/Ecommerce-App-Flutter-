@@ -1,4 +1,4 @@
-import 'package:eccomerce_frontend/features/home/presentation/providers/product_providers.dart';
+import 'package:nattt_bazaar/features/home/presentation/providers/product_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final selectedProductCategoryProvider =

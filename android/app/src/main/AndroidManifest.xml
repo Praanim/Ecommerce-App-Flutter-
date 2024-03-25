@@ -2,10 +2,10 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="eccomerce_frontend"
+        android:label="nattt_bazaar"
         android:name="${applicationName}"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"

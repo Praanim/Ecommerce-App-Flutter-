@@ -1,6 +1,6 @@
-import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/exceptions/http_exceptions.dart';
-import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
+import 'package:nattt_bazaar/core/constants/constants.dart';
+import 'package:nattt_bazaar/core/exceptions/http_exceptions.dart';
+import 'package:nattt_bazaar/features/home/domain/models/product_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

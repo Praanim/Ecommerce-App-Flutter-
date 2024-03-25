@@ -1,14 +1,14 @@
-import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/shared/custom_app_bar.dart';
-import 'package:eccomerce_frontend/core/shared/shared.dart';
-import 'package:eccomerce_frontend/core/utils/context_extension.dart';
-import 'package:eccomerce_frontend/core/utils/gap.dart';
-import 'package:eccomerce_frontend/core/widgets/custom_loading_widget.dart';
-import 'package:eccomerce_frontend/core/widgets/no_content_widget.dart';
-import 'package:eccomerce_frontend/features/orders/data/models/order_model.dart';
-import 'package:eccomerce_frontend/features/orders/presentation/providers/order_notifier.dart';
-import 'package:eccomerce_frontend/features/orders/presentation/providers/order_state.dart';
-import 'package:eccomerce_frontend/features/profile/presentation/widgets/profile_common_header.dart';
+import 'package:nattt_bazaar/core/constants/constants.dart';
+import 'package:nattt_bazaar/core/shared/custom_app_bar.dart';
+import 'package:nattt_bazaar/core/shared/shared.dart';
+import 'package:nattt_bazaar/core/utils/context_extension.dart';
+import 'package:nattt_bazaar/core/utils/gap.dart';
+import 'package:nattt_bazaar/core/widgets/custom_loading_widget.dart';
+import 'package:nattt_bazaar/core/widgets/no_content_widget.dart';
+import 'package:nattt_bazaar/features/orders/data/models/order_model.dart';
+import 'package:nattt_bazaar/features/orders/presentation/providers/order_notifier.dart';
+import 'package:nattt_bazaar/features/orders/presentation/providers/order_state.dart';
+import 'package:nattt_bazaar/features/profile/presentation/widgets/profile_common_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

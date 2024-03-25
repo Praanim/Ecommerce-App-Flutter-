@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:eccomerce_frontend/core/exceptions/http_exceptions.dart';
-import 'package:eccomerce_frontend/core/shared/shared.dart';
-import 'package:eccomerce_frontend/features/auth/data/models/user.dart';
-import 'package:eccomerce_frontend/features/auth/domain/providers/auth_provider.dart';
-import 'package:eccomerce_frontend/features/auth/domain/repositories/auth_repository.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/state/auth_state.dart';
+import 'package:nattt_bazaar/core/exceptions/http_exceptions.dart';
+import 'package:nattt_bazaar/core/shared/shared.dart';
+import 'package:nattt_bazaar/features/auth/data/models/user.dart';
+import 'package:nattt_bazaar/features/auth/domain/providers/auth_provider.dart';
+import 'package:nattt_bazaar/features/auth/domain/repositories/auth_repository.dart';
+import 'package:nattt_bazaar/features/auth/presentation/providers/auth_providers.dart';
+import 'package:nattt_bazaar/features/auth/presentation/providers/state/auth_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

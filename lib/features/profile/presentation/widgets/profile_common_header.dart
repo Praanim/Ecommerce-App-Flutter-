@@ -1,6 +1,6 @@
-import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/utils/context_extension.dart';
-import 'package:eccomerce_frontend/core/utils/gap.dart';
+import 'package:nattt_bazaar/core/constants/constants.dart';
+import 'package:nattt_bazaar/core/utils/context_extension.dart';
+import 'package:nattt_bazaar/core/utils/gap.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCommonHeader extends StatelessWidget {

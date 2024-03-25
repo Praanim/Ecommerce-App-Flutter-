@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:eccomerce_frontend/core/exceptions/http_exceptions.dart';
+import 'package:nattt_bazaar/core/exceptions/http_exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../data/models/user.dart';

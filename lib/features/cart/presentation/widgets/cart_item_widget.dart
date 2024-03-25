@@ -1,9 +1,9 @@
-import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/shared/shared.dart';
-import 'package:eccomerce_frontend/core/utils/context_extension.dart';
-import 'package:eccomerce_frontend/core/utils/gap.dart';
-import 'package:eccomerce_frontend/features/cart/domain/models/cart_model.dart';
-import 'package:eccomerce_frontend/features/cart/presentation/providers/cart_providers.dart';
+import 'package:nattt_bazaar/core/constants/constants.dart';
+import 'package:nattt_bazaar/core/shared/shared.dart';
+import 'package:nattt_bazaar/core/utils/context_extension.dart';
+import 'package:nattt_bazaar/core/utils/gap.dart';
+import 'package:nattt_bazaar/features/cart/domain/models/cart_model.dart';
+import 'package:nattt_bazaar/features/cart/presentation/providers/cart_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,4 +1,4 @@
-import 'package:eccomerce_frontend/features/cart/presentation/providers/notifiers/cart_item_quantity_notifier.dart';
+import 'package:nattt_bazaar/features/cart/presentation/providers/notifiers/cart_item_quantity_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///This provider provides the number of the cart items for the user.

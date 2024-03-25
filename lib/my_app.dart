@@ -1,5 +1,5 @@
-import 'package:eccomerce_frontend/core/routes/app_routes.dart';
-import 'package:eccomerce_frontend/core/themes/app_themes.dart';
+import 'package:nattt_bazaar/core/routes/app_routes.dart';
+import 'package:nattt_bazaar/core/themes/app_themes.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {

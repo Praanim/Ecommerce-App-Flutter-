@@ -1,9 +1,9 @@
-import 'package:eccomerce_frontend/core/services/notifications/local_notification_services.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
-import 'package:eccomerce_frontend/features/orders/data/models/order_model.dart';
-import 'package:eccomerce_frontend/features/orders/data/repositories/order_repository.dart';
-import 'package:eccomerce_frontend/features/orders/domain/providers/order_providers.dart';
-import 'package:eccomerce_frontend/features/orders/presentation/providers/order_state.dart';
+import 'package:nattt_bazaar/core/services/notifications/local_notification_services.dart';
+import 'package:nattt_bazaar/features/auth/presentation/providers/auth_providers.dart';
+import 'package:nattt_bazaar/features/orders/data/models/order_model.dart';
+import 'package:nattt_bazaar/features/orders/data/repositories/order_repository.dart';
+import 'package:nattt_bazaar/features/orders/domain/providers/order_providers.dart';
+import 'package:nattt_bazaar/features/orders/presentation/providers/order_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final orderStateNotifierProvider =

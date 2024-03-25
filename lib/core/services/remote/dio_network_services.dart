@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:eccomerce_frontend/core/constants/api_constants.dart';
-import 'package:eccomerce_frontend/core/exceptions/http_exceptions.dart';
-import 'package:eccomerce_frontend/core/mixins/exception_handler_mixin.dart';
-import 'package:eccomerce_frontend/core/services/remote/network_services.dart';
-import 'package:eccomerce_frontend/core/shared/app_response.dart';
+import 'package:nattt_bazaar/core/constants/api_constants.dart';
+import 'package:nattt_bazaar/core/exceptions/http_exceptions.dart';
+import 'package:nattt_bazaar/core/mixins/exception_handler_mixin.dart';
+import 'package:nattt_bazaar/core/services/remote/network_services.dart';
+import 'package:nattt_bazaar/core/shared/app_response.dart';
 
 class DioNetworkService extends NetworkService with ExceptionHandlerMixin {
   ///[Dio] instance

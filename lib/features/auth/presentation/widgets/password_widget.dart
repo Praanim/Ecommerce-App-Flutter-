@@ -1,6 +1,6 @@
-import 'package:eccomerce_frontend/core/shared/validations.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/widgets/text_form_field.dart';
+import 'package:nattt_bazaar/core/shared/validations.dart';
+import 'package:nattt_bazaar/features/auth/presentation/providers/auth_providers.dart';
+import 'package:nattt_bazaar/features/auth/presentation/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

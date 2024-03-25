@@ -1,9 +1,9 @@
-import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/routes/route_constants.dart';
-import 'package:eccomerce_frontend/core/utils/context_extension.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/state/auth_state.dart';
-import 'package:eccomerce_frontend/features/cart/presentation/providers/notifiers/cart_notifier.dart';
+import 'package:nattt_bazaar/core/constants/constants.dart';
+import 'package:nattt_bazaar/core/routes/route_constants.dart';
+import 'package:nattt_bazaar/core/utils/context_extension.dart';
+import 'package:nattt_bazaar/features/auth/presentation/providers/auth_providers.dart';
+import 'package:nattt_bazaar/features/auth/presentation/providers/state/auth_state.dart';
+import 'package:nattt_bazaar/features/cart/presentation/providers/notifiers/cart_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

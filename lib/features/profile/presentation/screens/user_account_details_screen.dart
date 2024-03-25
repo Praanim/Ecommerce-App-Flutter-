@@ -1,11 +1,11 @@
-import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/constants/text_constants.dart';
-import 'package:eccomerce_frontend/core/shared/custom_app_bar.dart';
-import 'package:eccomerce_frontend/core/utils/gap.dart';
-import 'package:eccomerce_frontend/features/auth/data/models/user.dart';
-import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
-import 'package:eccomerce_frontend/features/profile/presentation/widgets/profile_common_header.dart';
-import 'package:eccomerce_frontend/features/profile/presentation/widgets/profile_common_row.dart';
+import 'package:nattt_bazaar/core/constants/constants.dart';
+import 'package:nattt_bazaar/core/constants/text_constants.dart';
+import 'package:nattt_bazaar/core/shared/custom_app_bar.dart';
+import 'package:nattt_bazaar/core/utils/gap.dart';
+import 'package:nattt_bazaar/features/auth/data/models/user.dart';
+import 'package:nattt_bazaar/features/auth/presentation/providers/auth_providers.dart';
+import 'package:nattt_bazaar/features/profile/presentation/widgets/profile_common_header.dart';
+import 'package:nattt_bazaar/features/profile/presentation/widgets/profile_common_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

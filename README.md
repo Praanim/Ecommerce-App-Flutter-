@@ -1,4 +1,4 @@
-# eccomerce_frontend
+# nattt_bazaar
 
 A new Flutter project.
 

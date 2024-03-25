@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:eccomerce_frontend/core/exceptions/http_exceptions.dart';
-import 'package:eccomerce_frontend/core/services/remote/remote.dart';
-import 'package:eccomerce_frontend/core/shared/shared.dart';
-import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
-import 'package:eccomerce_frontend/features/product/domain/models/category_model.dart';
+import 'package:nattt_bazaar/core/exceptions/http_exceptions.dart';
+import 'package:nattt_bazaar/core/services/remote/remote.dart';
+import 'package:nattt_bazaar/core/shared/shared.dart';
+import 'package:nattt_bazaar/features/home/domain/models/product_model.dart';
+import 'package:nattt_bazaar/features/product/domain/models/category_model.dart';
 
 abstract class ProductDataSource {
   ///get all Products

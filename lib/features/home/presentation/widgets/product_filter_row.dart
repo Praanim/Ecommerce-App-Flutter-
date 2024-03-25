@@ -1,6 +1,6 @@
-import 'package:eccomerce_frontend/core/constants/constants.dart';
-import 'package:eccomerce_frontend/core/routes/route_constants.dart';
-import 'package:eccomerce_frontend/core/utils/context_extension.dart';
+import 'package:nattt_bazaar/core/constants/constants.dart';
+import 'package:nattt_bazaar/core/routes/route_constants.dart';
+import 'package:nattt_bazaar/core/utils/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

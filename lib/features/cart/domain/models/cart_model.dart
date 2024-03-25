@@ -1,4 +1,4 @@
-import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
+import 'package:nattt_bazaar/features/home/domain/models/product_model.dart';
 
 class Cart {
   String id;

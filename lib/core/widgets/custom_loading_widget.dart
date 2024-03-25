@@ -1,4 +1,4 @@
-import 'package:eccomerce_frontend/core/utils/gap.dart';
+import 'package:nattt_bazaar/core/utils/gap.dart';
 import 'package:flutter/material.dart';
 
 class CustomLoadingWidget extends StatelessWidget {

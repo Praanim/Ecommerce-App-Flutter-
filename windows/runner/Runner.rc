@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "eccomerce_frontend" "\0"
+            VALUE "FileDescription", "nattt_bazaar" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "eccomerce_frontend" "\0"
+            VALUE "InternalName", "nattt_bazaar" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "eccomerce_frontend.exe" "\0"
-            VALUE "ProductName", "eccomerce_frontend" "\0"
+            VALUE "OriginalFilename", "nattt_bazaar.exe" "\0"
+            VALUE "ProductName", "nattt_bazaar" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

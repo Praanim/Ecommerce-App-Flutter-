@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:eccomerce_frontend/core/exceptions/http_exceptions.dart';
-import 'package:eccomerce_frontend/core/services/remote/network_services.dart';
-import 'package:eccomerce_frontend/core/shared/shared.dart';
-import 'package:eccomerce_frontend/features/auth/data/models/user.dart';
+import 'package:nattt_bazaar/core/exceptions/http_exceptions.dart';
+import 'package:nattt_bazaar/core/services/remote/network_services.dart';
+import 'package:nattt_bazaar/core/shared/shared.dart';
+import 'package:nattt_bazaar/features/auth/data/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthDataSource {
