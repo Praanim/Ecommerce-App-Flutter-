@@ -23,7 +23,7 @@ class OrderRemoteDataSource extends OrdersDataSource {
 
       return eitherResponse.fold((appException) => Left(appException),
           (appResponse) {
-        final data = appResponse.data;
+        final data = appResponse.data["data"];
         return Right(OrderModel.fromJson(data));
       });
     } catch (e) {
