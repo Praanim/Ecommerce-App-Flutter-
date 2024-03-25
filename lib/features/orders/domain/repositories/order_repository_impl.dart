@@ -13,4 +13,9 @@ class OrderRepositoryImpl extends OrderRepository {
   Future<Either<AppException, OrderModel>> createOrder(OrderModel orderModel) {
     return ordersDataSource.createOrder(orderModel);
   }
+
+  @override
+  Future<Either<AppException, List<OrderModel>>> getUserOrder(String userId) {
+    return ordersDataSource.getUserOrders(userId);
+  }
 }

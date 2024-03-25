@@ -1,4 +1,5 @@
 import 'package:eccomerce_frontend/core/services/notifications/local_notification_services.dart';
+import 'package:eccomerce_frontend/features/auth/presentation/providers/auth_providers.dart';
 import 'package:eccomerce_frontend/features/orders/data/models/order_model.dart';
 import 'package:eccomerce_frontend/features/orders/data/repositories/order_repository.dart';
 import 'package:eccomerce_frontend/features/orders/domain/providers/order_providers.dart';
@@ -6,13 +7,16 @@ import 'package:eccomerce_frontend/features/orders/presentation/providers/order_
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final orderStateNotifierProvider =
-    StateNotifierProvider.autoDispose<OrderNotifier, OrderState>(
-        (ref) => OrderNotifier(ref.watch(orderRepoProvider)));
+    StateNotifierProvider.autoDispose<OrderNotifier, OrderState>((ref) =>
+        OrderNotifier(ref.watch(orderRepoProvider))
+          ..getOrdersForUser(ref.watch(userDataProvider)!.id!));
 
 class OrderNotifier extends StateNotifier<OrderState> {
   final OrderRepository orderRepository;
 
   OrderNotifier(this.orderRepository) : super(OrderInitial());
+
+  List<OrderModel> _cachedOrders = [];
 
   void createOrder(OrderModel orderModel) async {
     state = OrderLoading();
@@ -27,10 +31,23 @@ class OrderNotifier extends StateNotifier<OrderState> {
           body:
               "We have successfully created your requested order to the specified location.Thank you!");
 
-      //update user.
-      state = OrderSuccess(orderModel: orderModel);
+      //update state.
+      _cachedOrders.insert(0, orderModel);
+      state = OrderSuccess(orders: _cachedOrders);
     });
   }
 
   //order create huna sath live orders ma add huna paryo. or .autodispose lagayeni vo.
+  void getOrdersForUser(String userId) async {
+    state = OrderLoading();
+    final eitherResponse = await orderRepository.getUserOrder(userId);
+
+    eitherResponse.fold((appException) {
+      state = OrderFailure(appException: appException);
+    }, (orders) async {
+      //update state.
+      _cachedOrders = orders;
+      state = OrderSuccess(orders: _cachedOrders);
+    });
+  }
 }

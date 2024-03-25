@@ -8,9 +8,9 @@ class OrderLoading extends OrderState {}
 class OrderInitial extends OrderState {}
 
 class OrderSuccess extends OrderState {
-  final OrderModel orderModel;
+  final List<OrderModel> orders;
 
-  OrderSuccess({required this.orderModel});
+  OrderSuccess({required this.orders});
 }
 
 class OrderFailure extends OrderState {

@@ -7,7 +7,7 @@ import 'package:eccomerce_frontend/features/cart/presentation/providers/notifier
 import 'package:eccomerce_frontend/features/home/domain/models/product_model.dart';
 import 'package:eccomerce_frontend/features/home/presentation/bottom_navigator_widget.dart';
 import 'package:eccomerce_frontend/features/cart/presentation/screens/cart_screen.dart';
-import 'package:eccomerce_frontend/features/home/presentation/screens/favourite_screen.dart';
+import 'package:eccomerce_frontend/features/orders/presentation/screens/orders_screen.dart.dart';
 import 'package:eccomerce_frontend/features/home/presentation/screens/home_screen.dart';
 import 'package:eccomerce_frontend/features/product/presentation/screens/product_details_screen.dart';
 import 'package:eccomerce_frontend/features/product/presentation/screens/product_screen.dart';
@@ -104,7 +104,7 @@ final GoRouter router = GoRouter(
               GoRoute(
                 path: '/order',
                 name: RouteConstants.orderScreen,
-                builder: (context, state) => const FavouriteScreen(),
+                builder: (context, state) => const OrdersScreen(),
               ),
             ]),
             StatefulShellBranch(routes: [
