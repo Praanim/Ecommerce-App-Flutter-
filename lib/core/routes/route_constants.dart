@@ -14,8 +14,11 @@ class RouteConstants {
   ///Child route of product screen
   static const productDetailsScreen = 'ProductDetails';
 
-  ///Bottom Navigation routes (Favourite)
-  static const orderScreen = 'Favourite';
+  ///Bottom Navigation routes (order)
+  static const orderScreen = 'Orders';
+
+  ///Orders child route
+  static const orderCheckoutScreen = "OrderCheckout";
 
   ///Bottom Navigation routes (Cart)
   static const cartScreen = 'Cart';

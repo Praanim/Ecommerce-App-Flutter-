@@ -7,6 +7,7 @@ import 'package:nattt_bazaar/features/cart/presentation/providers/notifiers/cart
 import 'package:nattt_bazaar/features/home/domain/models/product_model.dart';
 import 'package:nattt_bazaar/features/home/presentation/bottom_navigator_widget.dart';
 import 'package:nattt_bazaar/features/cart/presentation/screens/cart_screen.dart';
+import 'package:nattt_bazaar/features/orders/presentation/screens/orders_checkout_screen.dart';
 import 'package:nattt_bazaar/features/orders/presentation/screens/orders_screen.dart.dart';
 import 'package:nattt_bazaar/features/home/presentation/screens/home_screen.dart';
 import 'package:nattt_bazaar/features/product/presentation/screens/product_details_screen.dart';
@@ -86,17 +87,30 @@ final GoRouter router = GoRouter(
                         builder: (context, state) => const ProductScreen(),
                         routes: [
                           GoRoute(
-                            path: 'product-details',
-                            name: RouteConstants.productDetailsScreen,
-                            builder: (context, state) {
-                              final map = state.extra as Map<String, dynamic>;
-                              final Product product = map['product'];
+                              path: 'product-details',
+                              name: RouteConstants.productDetailsScreen,
+                              builder: (context, state) {
+                                final map = state.extra as Map<String, dynamic>;
+                                final Product product = map['product'];
 
-                              return ProductDetailsScreen(
-                                product: product,
-                              );
-                            },
-                          )
+                                return ProductDetailsScreen(
+                                  product: product,
+                                );
+                              },
+                              routes: [
+                                GoRoute(
+                                  path: 'checkout',
+                                  name: RouteConstants.orderCheckoutScreen,
+                                  builder: (context, state) {
+                                    final extra =
+                                        state.extra! as Map<String, dynamic>;
+                                    return OrdersCheckoutScreen(
+                                      product: extra['product'],
+                                      quantity: extra['quantity'],
+                                    );
+                                  },
+                                ),
+                              ]),
                         ])
                   ]),
             ]),

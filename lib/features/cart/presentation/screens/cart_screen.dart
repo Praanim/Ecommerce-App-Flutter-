@@ -1,5 +1,6 @@
 import 'package:nattt_bazaar/core/constants/constants.dart';
 import 'package:nattt_bazaar/core/shared/custom_app_bar.dart';
+import 'package:nattt_bazaar/core/utils/common_app_navigations.dart';
 import 'package:nattt_bazaar/core/utils/context_extension.dart';
 import 'package:nattt_bazaar/core/widgets/custom_elevated_button.dart';
 import 'package:nattt_bazaar/core/widgets/custom_error_widget.dart';
@@ -23,7 +24,7 @@ class CartScreen extends StatelessWidget {
       body: Consumer(
         builder: (context, ref, child) {
           final state = ref.watch(cartNotifierProvider);
-          int checkoutAmount = 0;
+          // int checkoutAmount = 0;
 
           if (state is CartSuccess) {
             final cartItems = state.cart.items;
@@ -58,18 +59,25 @@ class CartScreen extends StatelessWidget {
                           child: CustomElevatedButton(
                             title: 'Checkout',
                             onPressed: () {
-                              for (int i = 0;
-                                  i < state.cart.items.length;
-                                  i++) {
-                                checkoutAmount = checkoutAmount +
-                                    ref
-                                        .read(
-                                            cartItemCheckoutDetailsProvider(i))
-                                        .price;
-                              }
+                              // for (int i = 0;
+                              //     i < state.cart.items.length;
+                              //     i++) {
+                              //   checkoutAmount = checkoutAmount +
+                              //       ref
+                              //           .read(
+                              //               cartItemCheckoutDetailsProvider(i))
+                              //           .price;
+                              // }
 
-                              print(checkoutAmount);
-                              checkoutAmount = 0;
+                              navigateToCheckoutPage(
+                                  context,
+                                  cartItems[0].product,
+                                  ref
+                                      .read(cartItemCheckoutDetailsProvider(0))
+                                      .quantity);
+
+                              // print(checkoutAmount);
+                              // checkoutAmount = 0;
                             },
                             btnStyle: ElevatedButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(

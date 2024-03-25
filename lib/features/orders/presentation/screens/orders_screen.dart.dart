@@ -1,6 +1,5 @@
 import 'package:nattt_bazaar/core/constants/constants.dart';
 import 'package:nattt_bazaar/core/shared/custom_app_bar.dart';
-import 'package:nattt_bazaar/core/shared/shared.dart';
 import 'package:nattt_bazaar/core/utils/context_extension.dart';
 import 'package:nattt_bazaar/core/utils/gap.dart';
 import 'package:nattt_bazaar/core/widgets/custom_loading_widget.dart';
@@ -8,6 +7,7 @@ import 'package:nattt_bazaar/core/widgets/no_content_widget.dart';
 import 'package:nattt_bazaar/features/orders/data/models/order_model.dart';
 import 'package:nattt_bazaar/features/orders/presentation/providers/order_notifier.dart';
 import 'package:nattt_bazaar/features/orders/presentation/providers/order_state.dart';
+import 'package:nattt_bazaar/features/orders/presentation/widgets/order_item_widgets.dart';
 import 'package:nattt_bazaar/features/profile/presentation/widgets/profile_common_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,8 +38,11 @@ class OrdersScreen extends StatelessWidget {
                               icon: IconConstants.ordersIcon),
                           VerticalGap.xl,
                           ...orderState.orders
-                              .map((orderModel) =>
-                                  OrderItemWidget(orderModel: orderModel))
+                              .map((orderModel) => OrderItemWidget(
+                                    product: orderModel.product,
+                                    subtitle: OrderLoadedWidget(
+                                        orderModel: orderModel),
+                                  ))
                               .toList()
                         ],
                       ),
@@ -53,69 +56,30 @@ class OrdersScreen extends StatelessWidget {
   }
 }
 
-class OrderItemWidget extends StatelessWidget {
-  final OrderModel orderModel;
+class OrderLoadedWidget extends StatelessWidget {
+  const OrderLoadedWidget({
+    super.key,
+    required this.orderModel,
+  });
 
-  const OrderItemWidget({super.key, required this.orderModel});
+  final OrderModel orderModel;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: AppConstants.pad8),
-      child: Padding(
-        padding: const EdgeInsets.all(AppConstants.pad8),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+            "Address: ${orderModel.addressModel.address} ${orderModel.addressModel.city}"),
+        VerticalGap.s,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-                flex: 3,
-                child: Image.network(
-                  SharedClass.checkAvailableProductImage(orderModel.product),
-                  fit: BoxFit.cover,
-                )
-                // Container(
-                //   height: 10,
-                //   width: 50,
-                //   decoration: BoxDecoration(
-                //       borderRadius:
-                //           BorderRadius.circular(AppConstants.primaryBorderRadius),
-                //       image: DecorationImage(
-                //           fit: BoxFit.cover,
-                //           image: NetworkImage(
-                //               SharedClass.checkAvailableProductImage(
-                //                   orderModel.product)))),
-                // ),
-                ),
-            HorizontalGap.xl,
-            Expanded(
-              flex: 9,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    orderModel.product.title,
-                    style: context.appTextTheme.headlineSmall,
-                  ),
-                  VerticalGap.s,
-                  Text(
-                      "Address: ${orderModel.addressModel.address} ${orderModel.addressModel.city} ${orderModel.addressModel.address}"),
-                  VerticalGap.s,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Quantity: ${orderModel.quantity}"),
-                      Text("Status: ${orderModel.status}")
-                    ],
-                  ),
-                  VerticalGap.s,
-                ],
-              ),
-            ),
+            Text("Quantity: ${orderModel.quantity}"),
+            Text("Status: ${orderModel.status}")
           ],
         ),
-      ),
+      ],
     );
   }
 }

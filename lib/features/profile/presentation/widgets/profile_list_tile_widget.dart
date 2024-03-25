@@ -7,11 +7,13 @@ class ProfileListTileWidget extends StatelessWidget {
       {required this.text,
       required this.leadingIcon,
       required this.onTap,
-      super.key});
+      super.key,
+      this.subtitle});
 
   final Widget leadingIcon;
   final void Function() onTap;
   final String text;
+  final Widget? subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class ProfileListTileWidget extends StatelessWidget {
           text,
           style: context.appTextTheme.bodyMedium,
         ),
+        subtitle: subtitle,
         trailing: const Icon(
           Icons.arrow_forward_ios,
           size: IconConstants.iconPrimarySize,

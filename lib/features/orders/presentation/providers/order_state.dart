@@ -7,6 +7,8 @@ class OrderLoading extends OrderState {}
 
 class OrderInitial extends OrderState {}
 
+class OrderCreated extends OrderState {}
+
 class OrderSuccess extends OrderState {
   final List<OrderModel> orders;
 

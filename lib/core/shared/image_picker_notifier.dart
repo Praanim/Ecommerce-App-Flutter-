@@ -28,4 +28,8 @@ class CustomImagePicker extends StateNotifier<File?> {
       state = null;
     }
   }
+
+  void resetState() {
+    state = null;
+  }
 }

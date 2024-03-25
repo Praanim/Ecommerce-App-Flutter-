@@ -80,6 +80,9 @@ class ValConstants {
 
   /// Provides value of 24.0
   static const double value24 = 24.0;
+
+  /// Provides value of 30.0
+  static const double value30 = 30.0;
 }
 
 class ImageConstants {

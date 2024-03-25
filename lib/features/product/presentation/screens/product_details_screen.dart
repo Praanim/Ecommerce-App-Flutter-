@@ -3,6 +3,7 @@ import 'package:nattt_bazaar/core/constants/button_style_constants.dart';
 import 'package:nattt_bazaar/core/constants/text_constants.dart';
 import 'package:nattt_bazaar/core/routes/route_constants.dart';
 import 'package:nattt_bazaar/core/shared/shared.dart';
+import 'package:nattt_bazaar/core/utils/common_app_navigations.dart';
 import 'package:nattt_bazaar/core/utils/context_extension.dart';
 import 'package:nattt_bazaar/core/utils/gap.dart';
 import 'package:nattt_bazaar/core/widgets/custom_elevated_button.dart';
@@ -74,51 +75,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 return CustomElevatedButton(
                   title: 'Buy Now',
                   onPressed: () {
-                    try {
-                      EsewaFlutterSdk.initPayment(
-                        esewaConfig: EsewaConfig(
-                          environment: Environment.test,
-                          clientId: dotenv.env['CLIENT_ID']!,
-                          secretId: dotenv.env['SECRET_KEY']!,
-                        ),
-                        esewaPayment: EsewaPayment(
-                            productId: product.id,
-                            productName: product.title,
-                            productPrice: product.price.toString(),
-                            callbackUrl: ''),
-                        onPaymentSuccess: (EsewaPaymentSuccessResult data) {
-                          debugPrint(":::SUCCESS::: => $data");
-
-                          final currentUserDetails = ref.read(userDataProvider);
-
-                          //order model
-                          final OrderModel orderModel = OrderModel(
-                            userId: currentUserDetails!.id!,
-                            product: product,
-                            status: "created",
-                            quantity: 1,
-                            totalAmount: product.price.toDouble(),
-                            transactionId: data.refId,
-                            addressModel: currentUserDetails.address!,
-                          );
-
-                          //calling create orders
-                          ref
-                              .read(orderStateNotifierProvider.notifier)
-                              .createOrder(orderModel);
-                        },
-                        onPaymentFailure: (data) {
-                          debugPrint(":::FAILURE::: => $data");
-                          _handleFailedOrCanceledOrder(context);
-                        },
-                        onPaymentCancellation: (data) {
-                          debugPrint(":::CANCELLATION::: => $data");
-                          _handleFailedOrCanceledOrder(context);
-                        },
-                      );
-                    } on Exception catch (e) {
-                      debugPrint("EXCEPTION : ${e.toString()}");
-                    }
+                    navigateToCheckoutPage(context, product, 1);
                   },
                 );
               }),
@@ -134,7 +91,7 @@ class ProductDetailsScreen extends StatelessWidget {
     ref.listen(
       orderStateNotifierProvider,
       (previous, next) {
-        if (next is OrderSuccess) {
+        if (next is OrderCreated) {
           context.showSnackBar(
               message: "Product Successfully Created.",
               toastType: ToastType.success);

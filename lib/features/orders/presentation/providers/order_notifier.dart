@@ -33,6 +33,7 @@ class OrderNotifier extends StateNotifier<OrderState> {
 
       //update state.
       _cachedOrders.insert(0, orderModel);
+      state = OrderCreated();
       state = OrderSuccess(orders: _cachedOrders);
     });
   }
