@@ -19,6 +19,7 @@ class LogOutBottomSheetWidget extends ConsumerWidget {
       authNotifierProvider,
       (previous, next) {
         if (next is AuthSignOut) {
+          ref.read(userDataProvider.notifier).clearUpUserDetails();
           context.goNamed(RouteConstants.loginScreen);
         } else if (next is AuthFailure) {
           context.pop();

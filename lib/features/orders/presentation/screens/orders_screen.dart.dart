@@ -1,6 +1,5 @@
 import 'package:nattt_bazaar/core/constants/constants.dart';
 import 'package:nattt_bazaar/core/shared/custom_app_bar.dart';
-import 'package:nattt_bazaar/core/utils/context_extension.dart';
 import 'package:nattt_bazaar/core/utils/gap.dart';
 import 'package:nattt_bazaar/core/widgets/custom_loading_widget.dart';
 import 'package:nattt_bazaar/core/widgets/no_content_widget.dart';
@@ -70,7 +69,10 @@ class OrderLoadedWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-            "Address: ${orderModel.addressModel.address} ${orderModel.addressModel.city}"),
+          "Address: ${orderModel.addressModel.address} ${orderModel.addressModel.city}",
+          maxLines: 1,
+          overflow: TextOverflow.clip,
+        ),
         VerticalGap.s,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

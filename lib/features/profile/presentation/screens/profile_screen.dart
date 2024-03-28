@@ -53,6 +53,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           },
         ),
         ProfileListTileItem(
+          title: 'Delete Account',
+          leadingIcon: const Icon(IconConstants.deleteIcon),
+          onTap: () {
+            context.showSnackBar(
+                message:
+                    "We have notified the admin.We will reach out to you soon regarding the delete request",
+                toastType: ToastType.message);
+          },
+        ),
+        ProfileListTileItem(
           title: 'Logout',
           leadingIcon: const Icon(IconConstants.logOutIcon),
           onTap: () async {

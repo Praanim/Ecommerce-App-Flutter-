@@ -11,6 +11,7 @@ import 'package:nattt_bazaar/features/cart/presentation/providers/notifiers/cart
 import 'package:nattt_bazaar/features/cart/presentation/widgets/cart_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nattt_bazaar/features/home/domain/models/product_model.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -59,22 +60,35 @@ class CartScreen extends StatelessWidget {
                           child: CustomElevatedButton(
                             title: 'Checkout',
                             onPressed: () {
-                              // for (int i = 0;
-                              //     i < state.cart.items.length;
-                              //     i++) {
-                              //   checkoutAmount = checkoutAmount +
-                              //       ref
-                              //           .read(
-                              //               cartItemCheckoutDetailsProvider(i))
-                              //           .price;
-                              // }
+                              //TODO:change this logic for all.
+                              Product? product;
+                              int? quantity;
+                              for (int i = 0;
+                                  i < state.cart.items.length;
+                                  i++) {
+                                final cartItemDetails = ref
+                                    .read(cartItemCheckoutDetailsProvider(i));
 
-                              navigateToCheckoutPage(
-                                  context,
-                                  cartItems[0].product,
-                                  ref
-                                      .read(cartItemCheckoutDetailsProvider(0))
-                                      .quantity);
+                                if (cartItemDetails.quantity != 0) {
+                                  product = cartItems[i].product;
+                                  quantity = cartItemDetails.quantity;
+                                  break;
+                                }
+                                // checkoutAmount = checkoutAmount +
+                                //     ref
+                                //         .read(
+                                //             cartItemCheckoutDetailsProvider(i))
+                                //         .price;
+                              }
+
+                              if (product == null) {
+                                context.showSnackBar(
+                                    message: "Please specify quantity",
+                                    toastType: ToastType.error);
+                              } else {
+                                navigateToCheckoutPage(
+                                    context, product, quantity!);
+                              }
 
                               // print(checkoutAmount);
                               // checkoutAmount = 0;

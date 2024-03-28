@@ -26,10 +26,10 @@ class OrderNotifier extends StateNotifier<OrderState> {
       state = OrderFailure(appException: appException);
     }, (orderModel) async {
       //send notification to the user.
-      await LocalNotificationServices.showNotifications(
-          title: "Order Created.",
-          body:
-              "We have successfully created your requested order to the specified location.Thank you!");
+      // await LocalNotificationServices.showNotifications(
+      //     title: "Order Created.",
+      //     body:
+      //         "We have successfully created your requested order to the specified location.Thank you!");
 
       //update state.
       _cachedOrders.insert(0, orderModel);

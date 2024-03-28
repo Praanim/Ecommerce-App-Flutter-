@@ -19,11 +19,20 @@ class AppConstants {
   ///provides padding of 16 pixel
   static const double pad16 = 16;
 
+  ///provides padding of 24 pixel
+  static const double pad24 = 24;
+
+  ///provides padding of 32 pixel
+  static const double pad32 = 32;
+
   ///primary border radius
   static const double primaryBorderRadius = 10;
 }
 
 class IconConstants {
+  ///app back arrow
+  static const IconData backArrow = Icons.arrow_back_ios_sharp;
+
   ///home icon (bottom navigation bar)
   static const IconData homeIcon = Icons.home;
 
@@ -42,6 +51,7 @@ class IconConstants {
   static const IconData notificationIcon = Icons.notifications_active;
   static const IconData downloadIcon = Icons.download;
   static const IconData logOutIcon = Icons.logout;
+  static const IconData deleteIcon = Icons.delete;
 
   ///provides size --> 20
   static const double iconPrimarySize = 20;
@@ -91,6 +101,7 @@ class ImageConstants {
   static const String carousel3 = 'assets/images/carousel3.jpeg';
   static const String appLogo = 'assets/images/nattt_bazar_logo.png';
   static const String notFoundImage = 'assets/images/not_found.png';
+  static const String esewaLogoImage = 'assets/images/esewa_logo.png';
 
   ///random network image Url
   static const String randomNetworkImageUrl =
