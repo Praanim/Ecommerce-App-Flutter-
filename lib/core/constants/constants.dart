@@ -102,6 +102,7 @@ class ImageConstants {
   static const String appLogo = 'assets/images/nattt_bazar_logo.png';
   static const String notFoundImage = 'assets/images/not_found.png';
   static const String esewaLogoImage = 'assets/images/esewa_logo.png';
+  static const String noInternetImage = 'assets/images/no_internet.png';
 
   ///random network image Url
   static const String randomNetworkImageUrl =

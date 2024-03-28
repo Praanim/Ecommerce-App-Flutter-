@@ -61,9 +61,7 @@ class AuthNotifier extends Notifier<AuthState> {
         }, (userModel) {
           //initializing the userModel class after succefull login in firebase
           //also the user is found in the db.
-          ref
-              .read(userDataProvider.notifier)
-              .setUserDetails(userModel as UserModel);
+          _initUserStateProvider(userModel);
           state = AuthSuccess(
             userModel: userModel,
           );
@@ -89,9 +87,12 @@ class AuthNotifier extends Notifier<AuthState> {
       (UserCredential userCredential) async {
         final eitherRes = await authRepository.createUserInDb(
             userModel: userModel.copyWith(id: userCredential.user!.uid));
-        return state = eitherRes.fold(
-            (appException) => AuthFailure(appException: appException),
-            (userModel) => AuthSuccess(userModel: userModel));
+        return state = eitherRes
+            .fold((appException) => AuthFailure(appException: appException),
+                (userModel) {
+          _initUserStateProvider(userModel);
+          return AuthSuccess(userModel: userModel);
+        });
       },
     );
   }
@@ -104,5 +105,9 @@ class AuthNotifier extends Notifier<AuthState> {
     state = eitherResponse.fold(
         (appException) => AuthFailure(appException: appException),
         (_) => AuthSignOut());
+  }
+
+  void _initUserStateProvider(userModel) {
+    ref.read(userDataProvider.notifier).setUserDetails(userModel as UserModel);
   }
 }

@@ -8,10 +8,9 @@ import 'package:flutter/widgets.dart';
 class NoContentWidget extends StatelessWidget {
   final String text;
 
-  const NoContentWidget({
-    super.key,
-    required this.text,
-  });
+  final String? imageUrl;
+
+  const NoContentWidget({super.key, required this.text, this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class NoContentWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const LogoImageWidget(assetUrl: ImageConstants.notFoundImage),
+          LogoImageWidget(assetUrl: imageUrl ?? ImageConstants.notFoundImage),
           VerticalGap.l,
           Text(
             text,
