@@ -14,6 +14,7 @@ class MyApp extends ConsumerWidget {
     final internetState = ref.watch(internetConnectionProvider);
 
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routerConfig: router,
       title: "Ecommerce App",
       theme: AppTheme.lightThemeData,

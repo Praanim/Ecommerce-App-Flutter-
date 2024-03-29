@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="nattt_bazaar"
+        android:label="Nattt Bazar"
         android:name="${applicationName}"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:icon="@mipmap/launcher_icon">

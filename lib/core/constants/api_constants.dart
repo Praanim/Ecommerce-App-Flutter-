@@ -1,5 +1,7 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class ApiConstants {
-  static const baseUrl = 'http://192.168.1.13:3000/api';
+  static final baseUrl = dotenv.env['BASE_URL']!;
 
   static const Map<String, Object> defaultHeaders = {
     'accept': 'application/json',

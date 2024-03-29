@@ -62,13 +62,13 @@ class OrdersCheckoutScreen extends StatelessWidget {
                   text: "Shipping Details", icon: Icons.delivery_dining),
               VerticalGap.s,
               Consumer(builder: (context, ref, child) {
-                final userDetails = ref.watch(userDataProvider)!;
+                final userDetails = ref.watch(userDataProvider);
                 return ProfileListTileWidget(
                     text: "Delivery Address",
                     leadingIcon: const Icon(IconConstants.homeIcon),
-                    subtitle: userDetails.address != null
+                    subtitle: userDetails?.address != null
                         ? Text(
-                            "${userDetails.address!.address} ${userDetails.address!.city}")
+                            "${userDetails!.address!.address} ${userDetails.address!.city}")
                         : Text(
                             'Add Address',
                             style: context.appTextTheme.bodySmall,

@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:696799016061:android:260fd4260cd027e8296d14",
+        "mobilesdk_app_id": "1:696799016061:android:377c299a68261df5296d14",
         "android_client_info": {
-          "package_name": "com.example.nattt_bazaar"
+          "package_name": "com.pranimsingh.natttbazar"
         }
       },
       "oauth_client": [],
